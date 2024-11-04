@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import JWT.JWTUtils;
 import model.Usuario;
 
 /**
@@ -133,6 +135,11 @@ public class Autentica extends HttpServlet {
 
         // Manejo de la sesión según el retorno de authenticate
         if (cli != null && cli.getRol().getId() >= 0) { // Usuario autenticado
+
+
+             String token = JWTUtils.generateToken(correo);
+                        System.out.println(token);
+                        
             sesion.setAttribute("userlog", cli.getRol().getId().toString());
             sesion.setAttribute("idUsuario", cli.getId());
             response.sendRedirect(getRedirectUrl(cli));
