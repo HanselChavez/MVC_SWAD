@@ -290,6 +290,23 @@ public class ProductController extends HttpServlet {
             imagenesSecundariasPaths = objectMapper.readValue(imagenesSecundariasData, new com.fasterxml.jackson.core.type.TypeReference<List<String>>() {
             });
         }
+
+        /*
+        int count = 0;
+        for (String img : imagenesSecundariasPaths) {
+
+            // Aquí puedes manejar la lógica para obtener el Part correspondiente
+            Part secondaryImagePart = request.getPart(img); // Debes asegurarte que esta parte exista
+            if (secondaryImagePart != null) {
+                String fileName = secondaryImagePart.getSubmittedFileName();
+                if (fileName != null && !fileName.isEmpty()) {
+                    String secondaryImagePath = uploadPath + File.separator + fileName;
+                    secondaryImagePart.write(secondaryImagePath); // Guardar imagen secundaria
+                    imagenesSecundariasPaths.set(count, "\\" + UPLOAD_DIR + "\\" + fileName); // Actualiza la ruta
+                    count++;
+                }
+            }
+        }*/
         for (int i = 0; i < imagenesSecundariasPaths.size(); i++) {
             String img = imagenesSecundariasPaths.get(i);
             imagenesSecundariasPaths.set(i, "\\" + UPLOAD_DIR + "\\" + img);

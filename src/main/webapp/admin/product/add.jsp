@@ -279,7 +279,7 @@
                 const isDuplicate = Array.from(existingImages).some(existingImg => existingImg.src === img.src || document.getElementById("previewPrincipal").src === existingImages.src);
                 if (!isDuplicate) {
                     const container = document.createElement("div");
-                    container.classList.add("relative","flex","items-center","justify-center");
+                    container.classList.add("relative", "flex", "items-center", "justify-center");
                     container.appendChild(img);
                     container.appendChild(removeButton);
                     document.getElementById("secundariasContainer").appendChild(container);
@@ -306,7 +306,7 @@
         const imagenesSecundariasData = Array.from(imgs).map(img => {
             return img.dataset.name;
         });
-        console.log(imagenesSecundariasData)
+        window.localStorage.setItem('imagenes', JSON.stringify(imagenesSecundariasData));
         document.getElementById("imagenesSecundariasData").value = JSON.stringify(imagenesSecundariasData);
     }
 </script>

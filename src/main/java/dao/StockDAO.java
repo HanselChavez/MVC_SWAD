@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,12 +11,9 @@ import model.Producto;
 import model.Proveedor;
 import model.Stock;
 import utilidades.Conexion;
-
 public class StockDAO {
-
     public StockDAO() {
     }
-    
     public List<Stock> getStock() {
         List<Stock> lista = new ArrayList<>();
         try {
@@ -40,34 +36,26 @@ public class StockDAO {
                     + "JOIN BDCamas.Productos p ON s.idProducto = p.id;";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
-
             while (resultado.next()) {
                 Stock st = new Stock();
                 st.setId(resultado.getLong("stock_id"));
                 st.setUbicacion(resultado.getString("ubicacion"));
                 st.setCantidad(resultado.getInt("cantidad"));
-
                 Producto pr = new Producto();
                 pr.setId(resultado.getLong("producto_id"));
                 pr.setNombre(resultado.getString("producto_nombre"));
                 pr.setDescripcion(resultado.getString("producto_descripcion"));
                 pr.setPrecioVenta(resultado.getDouble("precioVenta"));
                 pr.setPrecioCompra(resultado.getDouble("precioCompra"));
-
                 Categoria cat = new Categoria();
-
                 EstadoProducto ep = new EstadoProducto();
-
                 Proveedor pv = new Proveedor();
-
-                
                 pr.setCategoria(cat);
                 pr.setEstado(ep);
                 pr.setProveedor(pv);
                 st.setProducto(pr);
                 lista.add(st);
             }
-
             resultado.close();
             sentencia.close();
             cnx.close();

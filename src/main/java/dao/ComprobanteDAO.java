@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,13 +6,9 @@ import java.sql.SQLException;
 import model.Comprobante;
 import model.TipoComprobante;
 import utilidades.Conexion;
-
-
 public class ComprobanteDAO {
-
     public ComprobanteDAO() {
     }
-    
      public Comprobante getComprobanteById(String id) {
         Comprobante com = null;  // Inicializa como null para manejar el caso de que no se encuentre ningún rol
         try {
@@ -36,7 +31,6 @@ public class ComprobanteDAO {
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, id);
             ResultSet resultado = sentencia.executeQuery();
-
             if (resultado.next()) {
                 com = new Comprobante();
                 com.setId(resultado.getLong("id"));
@@ -49,7 +43,6 @@ public class ComprobanteDAO {
                 tp.setDescripcion(resultado.getString("tp_descripcion"));
                 com.setTipo(tp);
             }
-
             resultado.close();
             sentencia.close();
             cnx.close();

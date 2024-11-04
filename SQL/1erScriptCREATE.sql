@@ -8,12 +8,7 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema BDCamas
--- -----------------------------------------------------
 
--- -----------------------------------------------------
--- Schema BDCamas
--- -----------------------------------------------------
 Drop SCHEMA `BDCamas`;
 CREATE SCHEMA IF NOT EXISTS `BDCamas` DEFAULT CHARACTER SET utf8 ;
 USE `BDCamas` ;
@@ -33,24 +28,7 @@ CREATE TABLE IF NOT EXISTS `BDCamas`.`Categorias` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `BDCamas`.`IntentosSession` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `idEmpleado` int NOT NULL,
-  `ip` varchar(20) NOT NULL,
-  `cantidad` int NOT NULL,
-  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `hora` time NOT NULL,
-  `fechaModificación` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `usuarioModificador` INT NOT NULL,
-  
-  PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE ,
-    CONSTRAINT `fk_Usuarios_Session1`
-    FOREIGN KEY (`idEmpleado`)
-    REFERENCES `BDCamas`.`Empleados` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `BDCamas`.`EstadosProducto`
@@ -209,6 +187,24 @@ CREATE TABLE IF NOT EXISTS `BDCamas`.`Empleados` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
     
+  CREATE TABLE IF NOT EXISTS `BDCamas`.`IntentosSession` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `idEmpleado` int NOT NULL,
+  `ip` varchar(20) NOT NULL,
+  `cantidad` int NOT NULL,
+  `fecha` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `hora` time NOT NULL,
+  `fechaModificación` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `usuarioModificador` INT NOT NULL,
+  
+  PRIMARY KEY (`id`),
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE ,
+    CONSTRAINT `fk_Usuarios_Session1`
+    FOREIGN KEY (`idEmpleado`)
+    REFERENCES `BDCamas`.`Empleados` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `BDCamas`.`HistorialSesion` (
   `id` INT NOT NULL AUTO_INCREMENT,

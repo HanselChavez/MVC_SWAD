@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>Dayanara</groupId>
     <artifactId>SWAD_Camas</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1</version>
     <packaging>war</packaging>
-    <name>SWAD_Camas-1.0-SNAPSHOT</name>
+    <name>SWAD_Camas</name>
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>

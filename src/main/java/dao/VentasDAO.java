@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,12 +11,9 @@ import model.MetodoPago;
 import model.Usuario;
 import model.Venta;
 import utilidades.Conexion;
-
 public class VentasDAO {
-
     public VentasDAO() {
     }
-    
      public List<Venta> getVentas() {
         List<Venta> lista = new ArrayList<>();
         try {
@@ -66,7 +62,6 @@ public class VentasDAO {
                     + "    TipoComprobante tc ON comp.idTipoComprobante = tc.id;";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
-            
             while (resultado.next()) {
                 Venta vt = new Venta();
                 vt.setId(resultado.getLong("idVenta"));
@@ -84,7 +79,6 @@ public class VentasDAO {
                 cl.setTelefono(resultado.getString("telefonoCliente"));
                 cl.setDni(resultado.getString("dniCliente"));
                 vt.setCliente(cl);
-                
                 Usuario emp = new Usuario();
                 emp.setId(resultado.getLong("idEmpleado"));
                 emp.setDni(resultado.getString("dniEmpleado"));
@@ -94,17 +88,14 @@ public class VentasDAO {
                 emp.setTelefono(resultado.getString("telefonoEmpleado"));
                 emp.setCorreo(resultado.getString("correoEmpleado"));
                 vt.setEmpleado(emp);
-                
                 MetodoPago mp = new MetodoPago();
                 mp.setId(resultado.getLong("idMetodoPago"));
                 mp.setNombre(resultado.getString("nombreMetodoPago"));
                 mp.setDescripcion(resultado.getString("descripcionMetodoPago"));
                 vt.setMetodoPago(mp);
-                
                 Comprobante com = new Comprobante();
                 com.setId(resultado.getLong("idComprobante"));
                 vt.setComprobante(com);
-                
                 lista.add(vt);
             }
             resultado.close();

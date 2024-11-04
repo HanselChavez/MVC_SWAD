@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,12 +11,9 @@ import model.Proveedor;
 import model.TipoComprobante;
 import model.Usuario;
 import utilidades.Conexion;
-
 public class CompraDAO {
-
     public CompraDAO() {
     }
-
     public List<Compra> getCompras() {
         List<Compra> list = new ArrayList<>();
         try {
@@ -59,7 +55,6 @@ public class CompraDAO {
                     + "    TipoComprobante tc ON comp.idTipoComprobante = tc.id;";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
-
             while (resultado.next()) {
                 Compra co = new Compra();
                 co.setId(resultado.getLong("idCompra"));
@@ -74,7 +69,6 @@ public class CompraDAO {
                 pv.setTelefono(resultado.getString("telefonoProveedor"));
                 pv.setDireccion(resultado.getString("direccionProveedor"));
                 co.setProveedor(pv);
-
                 Usuario emp = new Usuario();
                 emp.setId(resultado.getLong("idEmpleado"));
                 emp.setDni(resultado.getString("dniEmpleado"));
@@ -87,12 +81,10 @@ public class CompraDAO {
                 TipoComprobante tc = new TipoComprobante();
                 tc.setId(resultado.getLong("tipoComprobanteID"));
                 tc.setNombre(resultado.getString("tipoComprobante"));
-
                 Comprobante com = new Comprobante();
                 com.setId(resultado.getLong("idComprobante"));
                 com.setTipo(tc);
                 co.setComprobante(com);
-
                 list.add(co);
             }
             resultado.close();
@@ -102,6 +94,5 @@ public class CompraDAO {
             System.out.println("Error en getVentas: " + e.getMessage());
         }
         return list;
-
     }
 }

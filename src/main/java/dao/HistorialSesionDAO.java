@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,12 +10,9 @@ import model.HistorialSesion;
 import model.Rol;
 import model.Usuario;
 import utilidades.Conexion;
-
 public class HistorialSesionDAO {
-
     public List<HistorialSesion> getHistorialSesion() {
         List<HistorialSesion> lista = new ArrayList<>();
-
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
@@ -27,7 +23,6 @@ public class HistorialSesionDAO {
                     + " FROM BDCamas.HistorialSesion";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
-
             while (resultado.next()) {
                 HistorialSesion hs = new HistorialSesion();
                 hs.setId(resultado.getLong("id"));
@@ -36,7 +31,6 @@ public class HistorialSesionDAO {
 
                 lista.add(hs);
             }
-
             resultado.close();
             sentencia.close();
             cnx.close();

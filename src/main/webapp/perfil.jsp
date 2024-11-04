@@ -1,12 +1,13 @@
+<%@page import="model.Cliente"%>
 <%@page import="dao.ClienteDAO"%>
 <%@page import="java.util.Map"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%
     if (session.getAttribute("userlog") != null && session.getAttribute("userlog").toString().equals("0")) {
-        String id = session.getAttribute("idCliente").toString();
+        String id = session.getAttribute("idUsuario").toString();
         ClienteDAO cd = new ClienteDAO();
-        ClienteDAO cl = cd.getClienteById(id);
+        Cliente cl = cd.getClienteById(id);
 %>
 <html>
     <head>
@@ -78,9 +79,80 @@
                 </div>
             </div>
         </header>
-        <main class=" md:pt-24 ">
+        <main class="md:pt-24 flex container-fluid mx-auto">
+            <!-- Sidebar -->
+            <nav class="w-64 bg-gray-100 h-screen p-4">
+                <h2 class="text-xl font-semibold mb-4">Mi Cuenta</h2>
+                <ul class="space-y-2">
+                    <li>
+                        <a href="#cuenta" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Cuenta</a>
+                    </li>
+                    <li>
+                        <a href="#general" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Información General</a>
+                    </li>
+                    <li>
+                        <a href="#pedidos" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Mis Pedidos</a>
+                    </li>
+                    <li>
+                        <a href="#reembolsos" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Reembolsos</a>
+                    </li>
+                    <li>
+                        <a href="#devoluciones" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Devoluciones</a>
+                    </li>
+                    <li>
+                        <a href="#valoraciones" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Valoraciones</a>
+                    </li>
+                    <li>
+                        <a href="#ajustes" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Ajustes</a>
+                    </li>
+                    <li>
+                        <a href="#centroMensajes" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Centro de Mensajes</a>
+                    </li>
+                    <li>
+                        <a href="#sanciones" class="block p-2 text-gray-800 hover:bg-gray-300 rounded">Información sobre Sanciones</a>
+                    </li>
+                </ul>
+            </nav>
 
-
+            <!-- Main Content -->
+            <div class="flex-1 p-6">
+                <div id="cuenta" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Mi Cuenta</h3>
+                    <p>Detalles de la cuenta...</p>
+                </div>
+                <div id="general" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Información General</h3>
+                    <p>Información general sobre el usuario...</p>
+                </div>
+                <div id="pedidos" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Mis Pedidos</h3>
+                    <p>Listado de pedidos realizados...</p>
+                </div>
+                <div id="reembolsos" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Reembolsos</h3>
+                    <p>Información sobre reembolsos...</p>
+                </div>
+                <div id="devoluciones" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Devoluciones</h3>
+                    <p>Detalles sobre devoluciones...</p>
+                </div>
+                <div id="valoraciones" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Valoraciones</h3>
+                    <p>Valoraciones realizadas...</p>
+                </div>
+                <div id="ajustes" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Ajustes</h3>
+                    <p>Configuraciones de la cuenta...</p>
+                </div>
+                <div id="centroMensajes" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Centro de Mensajes</h3>
+                    <p>Mensajes recibidos y enviados...</p>
+                </div>
+                <div id="sanciones" class="hidden">
+                    <h3 class="text-2xl font-semibold mb-4">Información sobre Sanciones</h3>
+                    <p>Detalles sobre sanciones y políticas...</p>
+                </div>
+            </div>
         </main>
         <footer class="bg-primario py-5 px-2 px-md-0">
             <div
@@ -187,6 +259,21 @@
             const logButton = document.getElementById('logbutton');
             logButton.classList.toggle('hidden');
         }
+
+        const navLinks = document.querySelectorAll('nav a');
+        const contentSections = document.querySelectorAll('main > div');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                contentSections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+                document.getElementById(targetId).classList.remove('hidden');
+            });
+        });
+        document.getElementById('cuenta').classList.remove('hidden');
+
     </script>
 
 </body>

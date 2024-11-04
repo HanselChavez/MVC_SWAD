@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
-
 import dao.ClienteDAO;
 import dao.UsuarioDAO;
 import java.io.OutputStream;
@@ -21,19 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Usuario;
-
-/**
- *
- * @author GianH
- */
 @WebServlet(name = "Auth", urlPatterns = {"/auth", "/auth/"})
 public class Autentica extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String accion = request.getParameter("accion");
-
         switch (accion) {
             case "validar":
                 validar(request, response);
@@ -46,9 +34,7 @@ public class Autentica extends HttpServlet {
             default:
                 break;
         }
-
     }
-
     public void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String dni = request.getParameter("dni");
         String nombres = request.getParameter("nombre");
@@ -58,18 +44,14 @@ public class Autentica extends HttpServlet {
         String password = request.getParameter("password");
         String telefono = request.getParameter("telefono");
         String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-
-        // Validar reCAPTCHA
         if (!validateRecaptcha(gRecaptchaResponse)) {
             request.setAttribute("error", "Captcha no válido. Intenta nuevamente.");
             guardarDatosEnRequest(request, dni, nombres, apePat + " " + apeMat, correo, telefono);
             request.getRequestDispatcher("/auth/register.jsp").forward(request, response);
             return;
         }
-
         ClienteDAO usuario = new ClienteDAO();
         int resultado = usuario.createCliente(dni, nombres, correo, password, apePat, apeMat, telefono, 1);
-
         if (resultado > 0) {
             request.setAttribute("success", "Usuario registrado correctamente.");
             request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
@@ -83,7 +65,6 @@ public class Autentica extends HttpServlet {
             request.getRequestDispatcher("/auth/register.jsp").forward(request, response);
         }
     }
-
     private void guardarDatosEnRequest(HttpServletRequest request, String dni, String nombres, String apellidos, String correo, String telefono) {
         request.setAttribute("dni", dni);
         request.setAttribute("nombre", nombres);
@@ -91,7 +72,6 @@ public class Autentica extends HttpServlet {
         request.setAttribute("email", correo);
         request.setAttribute("telefono", telefono);
     }
-
     public CompletableFuture<String> obtenerIpPublicaAsync() {
         return CompletableFuture.supplyAsync(() -> {
             StringBuilder result = new StringBuilder();
@@ -99,7 +79,6 @@ public class Autentica extends HttpServlet {
                 URL url = new URL("http://api.ipify.org");
                 HttpURLConnection conn = (HttpURLConnection) url.openConnection();
                 conn.setRequestMethod("GET");
-
                 try (BufferedReader reader = new BufferedReader(new InputStreamReader(conn.getInputStream()))) {
                     String line;
                     while ((line = reader.readLine()) != null) {
@@ -112,7 +91,6 @@ public class Autentica extends HttpServlet {
             return result.toString();
         });
     }
-
     public void validar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String correo = request.getParameter("correo");
@@ -121,28 +99,21 @@ public class Autentica extends HttpServlet {
         String ipCliente = obtenerIpPublicaAsync().join();
         System.out.println("IPCLIENTE:  " + ipCliente);
         HttpSession sesion = request.getSession();
-
-        // Verificar reCAPTCHA
         if (!validateRecaptcha(gRecaptchaResponse)) {
             request.setAttribute("error", "Captcha no válido. Intenta nuevamente.");
             request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
             return;
         }
-
         Usuario cli = new UsuarioDAO().authenticate(correo, password, ipCliente);
-
-        // Manejo de la sesión según el retorno de authenticate
         if (cli != null && cli.getRol().getId() >= 0) { // Usuario autenticado
             sesion.setAttribute("userlog", cli.getRol().getId().toString());
             sesion.setAttribute("idUsuario", cli.getId());
             response.sendRedirect(getRedirectUrl(cli));
         } else {
-            // Mensaje de error según el rol
             request.setAttribute("error", getErrorMessage(cli));
             request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
         }
     }
-
     private String getRedirectUrl(Usuario cli) {
         switch (cli.getRol().getId().toString()) {
             case "1":
@@ -155,7 +126,6 @@ public class Autentica extends HttpServlet {
                 return "/"; // Redirigir a la página principal
         }
     }
-
     private String getErrorMessage(Usuario cli) {
         if (cli == null || cli.getRol().getId() < 0) {
             return "Credenciales incorrectas.";
@@ -170,7 +140,6 @@ public class Autentica extends HttpServlet {
                 return "Error desconocido.";
         }
     }
-
     public void cerrar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
@@ -178,31 +147,25 @@ public class Autentica extends HttpServlet {
         session.invalidate();
         response.sendRedirect("/");
     }
-
     private boolean validateRecaptcha(String gRecaptchaResponse) throws IOException {
         String secretKey = "6Lege1QqAAAAACPiinSHE4qRGw4ASdfz1NCta6Bb"; // Reemplaza con tu clave secreta
         String url = "https://www.google.com/recaptcha/api/siteverify";
-
         String params = "secret=" + secretKey + "&response=" + gRecaptchaResponse;
         HttpURLConnection conn = (HttpURLConnection) new URL(url).openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
-
         try (OutputStream os = conn.getOutputStream()) {
             os.write(params.getBytes());
             os.flush();
         }
-
         try (Scanner scanner = new Scanner(conn.getInputStream())) {
             String responseBody = scanner.useDelimiter("\\A").next();
             return responseBody.contains("\"success\": true");
         }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //response.sendRedirect(request.getContextPath() + "/admin/index.jsp?pagina=dashboard");
         response.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET method is not supported for this route.");
 
     }

@@ -1,5 +1,4 @@
 package controller;
-
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,10 +7,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
 @WebServlet(name = "/vendedor", urlPatterns = {"/vendedor", "/vendedor/"})
 public class VendedorController extends HttpServlet {
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         System.out.println("Servlet Invoked");
@@ -51,10 +48,8 @@ public class VendedorController extends HttpServlet {
                 default:
                     view = "index.jsp";
                     break;
-                // Add more cases as needed
             }
         }
-        
         request.setAttribute("view", view);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/vendedor/index.jsp");
         dispatcher.forward(request, response);

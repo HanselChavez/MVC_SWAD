@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,13 +10,9 @@ import java.util.regex.Pattern;
 import model.Cliente;
 import org.mindrot.jbcrypt.BCrypt;
 import utilidades.Conexion;
-
 public class ClienteDAO {
-
     public ClienteDAO() {
-
     }
-
     public int createCliente(String dni, String nombres, String correo, String contra,
             String apePaterno, String apeMaterno, String telefono,
             int usuCreador) {
@@ -60,7 +51,6 @@ public class ClienteDAO {
         PreparedStatement selectStmt = null;
         ResultSet rs = null;
         int filasInsertadas = 0;
-
         try {
             Conexion c = new Conexion();
             cnx = c.conecta();
@@ -93,48 +83,10 @@ public class ClienteDAO {
             insertStmt.setInt(8, 1);
             insertStmt.setString(9, telefono);
             filasInsertadas = insertStmt.executeUpdate();
-
-            /*
-            if (filasInsertadas > 0) {
-                // Obtener el ID del nuevo registro
-                rs = insertStmt.getGeneratedKeys();
-                if (rs.next()) {
-                    int nuevoId = rs.getInt(1);
-
-                    // Consultar el registro recién creado
-                    String selectQuery = "SELECT * FROM empleados WHERE id=?";
-                    selectStmt = cnx.prepareStatement(selectQuery);
-                    selectStmt.setInt(1, nuevoId);
-                    ResultSet rsSelect = selectStmt.executeQuery();
-
-                    if (rsSelect.next()) {
-                        // Mostrar el registro creado
-                        System.out.println("Usuario Creado Correctamente:");
-                        System.out.println("ID: " + rsSelect.getInt("id"));
-                        System.out.println("DNI: " + rsSelect.getString("dni"));
-                        System.out.println("Nombres: " + rsSelect.getString("nombres"));
-                        System.out.println("Correo: " + rsSelect.getString("correo"));
-                        System.out.println("Contraseña: " + rsSelect.getString("contra"));
-                        System.out.println("Apellido Paterno: " + rsSelect.getString("apePaterno"));
-                        System.out.println("Apellido Materno: " + rsSelect.getString("apeMaterno"));
-                        System.out.println("Teléfono: " + rsSelect.getString("telefono"));
-                        System.out.println("ID Rol: " + rsSelect.getInt("idRol"));
-                        System.out.println("ID Estado: " + rsSelect.getInt("idEstado"));
-                        System.out.println("Usuario Creador: " + rsSelect.getInt("usuarioCreador"));
-                        System.out.println("Usuario Modificador: " + rsSelect.getInt("usuarioModificador"));
-                    } else {
-                        System.out.println("No se pudo recuperar el usuario recién creado.");
-                    }
-                    rsSelect.close();
-                }
-            } else {
-                System.out.println("No se pudo crear el usuario.");
-            }*/
         } catch (SQLException e) {
             System.out.println("Error en crearCliente: " + e.getMessage());
             return 0;
         } finally {
-            // Cierra los recursos en el bloque finally
             try {
                 if (insertStmt != null) {
                     insertStmt.close();
@@ -152,10 +104,8 @@ public class ClienteDAO {
                 System.out.println("Error al cerrar recursos: " + e.getMessage());
             }
         }
-
         return filasInsertadas;
     }
-
     public int editCliente(String id, String cl_nombre, String cl_paterno,
             String cl_materno, String cl_telf, String cl_direc, String cl_dni, String contra) {
         try {
@@ -174,38 +124,30 @@ public class ClienteDAO {
             sentencia.setString(7, hashedPassword);
             sentencia.setString(8, id);
             int filasActualizadas = sentencia.executeUpdate();
-
             sentencia.close();
             cnx.close();
-
             return filasActualizadas > 0 ? 1 : 0;
         } catch (SQLException e) {
             System.out.println("Error en editCliente: " + e.getMessage());
             return 0;
         }
     }
-
     public int deleteCliente(String id) {
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
-
             String query = "DELETE FROM clientes WHERE id=?";
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, id);
-
             int filasEliminadas = sentencia.executeUpdate();
-
             sentencia.close();
             cnx.close();
-
             return filasEliminadas > 0 ? 1 : 0;
         } catch (SQLException e) {
             System.out.println("Error en deleteCliente: " + e.getMessage());
             return 0;
         }
     }
-
     public Cliente getClienteById(String id) {
         Cliente cl = new Cliente();
         try {
@@ -232,10 +174,8 @@ public class ClienteDAO {
         } catch (SQLException e) {
             System.out.println("Error en getClienteById: " + e.getMessage());
         }
-
         return cl;
     }
-
     public List<Cliente> getClientes() {
         List<Cliente> lista = new ArrayList<>();
         try {
@@ -243,7 +183,6 @@ public class ClienteDAO {
             String query = "SELECT * FROM BDCamas.Clientes";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
-
             while (resultado.next()) {
                 Cliente cl = new Cliente();
                 cl.setId(resultado.getLong("id"));
@@ -261,8 +200,6 @@ public class ClienteDAO {
         } catch (SQLException e) {
             System.out.println("Error en getClientes: " + e.getMessage());
         }
-
         return lista;
     }
-
 }

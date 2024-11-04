@@ -335,6 +335,7 @@
         const imagenesSecundariasData = Array.from(imgs).map(img => {
             return img.dataset.name; // Guardar las URLs de las imágenes
         });
+        console.log(imagenesSecundariasData)
         document.getElementById("imagenesSecundariasData").value = JSON.stringify(imagenesSecundariasData);
     }
 </script>

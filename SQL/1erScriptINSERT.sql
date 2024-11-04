@@ -9,7 +9,7 @@ VALUES
 ('Agotado', 'Producto temporalmente agotado', 2, 2),
 ('En tránsito', 'Producto en proceso de reposición', 3, 3);
 
-select * from BDCamas.Empleados;
+select * from BDCamas.Imagenes;
 INSERT INTO BDCamas.Proveedores (empresa, telefono, direccion, correo, ruc, usuarioCreador, usuarioModificador)
 VALUES 
 ('Colchones Perú S.A.', '999888777', 'Av. Siempre Viva 123', 'contacto@colchonesperu.com', '20100000001', 1, 1),

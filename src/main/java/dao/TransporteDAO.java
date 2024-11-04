@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -8,12 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Transporte;
 import utilidades.Conexion;
-
 public class TransporteDAO {
-
     public TransporteDAO() {
     }
-
     public List<Transporte> getTransportes() {
         List<Transporte> lista = new ArrayList<>();
         try {
@@ -22,7 +18,6 @@ public class TransporteDAO {
             String query = "SELECT * FROM BDCamas.Transporte";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
-
             while (resultado.next()) {
                 Transporte tr = new Transporte();
                 tr.setId(resultado.getLong("id"));
@@ -30,10 +25,8 @@ public class TransporteDAO {
                 tr.setMarca(resultado.getString("marca"));
                 tr.setModelo(resultado.getString("modelo"));
                 tr.setPlaca(resultado.getString("placa"));
-
                 lista.add(tr);
             }
-
             resultado.close();
             sentencia.close();
             cnx.close();
