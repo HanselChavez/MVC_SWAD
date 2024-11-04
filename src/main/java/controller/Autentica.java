@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import JWT.JWTUtils;
 import model.Usuario;
 @WebServlet(name = "Auth", urlPatterns = {"/auth", "/auth/"})
 public class Autentica extends HttpServlet {
@@ -106,6 +108,11 @@ public class Autentica extends HttpServlet {
         }
         Usuario cli = new UsuarioDAO().authenticate(correo, password, ipCliente);
         if (cli != null && cli.getRol().getId() >= 0) { // Usuario autenticado
+
+
+             String token = JWTUtils.generateToken(correo);
+                        System.out.println(token);
+                        
             sesion.setAttribute("userlog", cli.getRol().getId().toString());
             sesion.setAttribute("idUsuario", cli.getId());
             response.sendRedirect(getRedirectUrl(cli));
