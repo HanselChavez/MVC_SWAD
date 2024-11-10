@@ -40,9 +40,6 @@
                         <div id="logbutton"  class="hidden absolute bg-white text-black right-0 top-12 w-40 flex flex-col">
                             <a class=" transition-all text-center duration-500 w-full hover:text-white hover:bg-black
                                py-2  font-semibold" href="/auth/login.jsp">Iniciar Sesion</a>
-
-
-
                         </div>
 
                         </header>

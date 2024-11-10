@@ -20,7 +20,7 @@ import model.Usuario;
 
 /**
  *
- * @author GianH
+ * @author Gian&&Hansel
  */
 @WebServlet(name = "Auth", urlPatterns = {"/auth", "/auth/"})
 public class Autentica extends HttpServlet {
@@ -99,12 +99,14 @@ public class Autentica extends HttpServlet {
             return;
         }*/
 
+         /*
+         
         if (!validateRecaptcha(gRecaptchaResponse)) {
             request.setAttribute("error", "Captcha no válido. Intenta nuevamente.");
             request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
             return;
         }
-
+         */
         Usuario cli = new UsuarioDAO().authenticate(correo, password, ipCliente);
 
         if (cli != null && cli.getRol().getId() > 0) { // Si el usuario está autenticado
