@@ -1,5 +1,4 @@
 package dao;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,118 +12,119 @@ import model.Rol;
 import model.Usuario;
 import org.mindrot.jbcrypt.BCrypt;
 import utilidades.Conexion;
-
 public class UsuarioDAO {
-
     public UsuarioDAO() {
     }
-
     public Usuario authenticate(String email, String psw, String ipCliente) {
         Usuario logueado = new Usuario();
         Rol rolN = new Rol();
         String emailRegex = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
         String passwordRegex = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-
         if (!Pattern.matches(emailRegex, email)) {
-            System.out.println("Correo electrónico no válido.");
-            rolN.setId(Long.valueOf("-1"));
+            rolN.setId(Long.valueOf("-1")); // Correo no válido
             logueado.setRol(rolN);
             return logueado;
         }
         if (!Pattern.matches(passwordRegex, psw)) {
-            System.out.println("Contraseña no válida.");
-            rolN.setId(Long.valueOf("-2"));
+            rolN.setId(Long.valueOf("-2")); // Contraseña no válida
             logueado.setRol(rolN);
             return logueado;
         }
-
-        try {
-            Connection cnx = Conexion.conecta();
-
-            String queryIntentos = "SELECT cantidad FROM IntentosSession WHERE idEmpleado = ? "
-                    + "AND fecha = CURDATE() AND hora >= DATE_SUB(NOW(), INTERVAL 1 HOUR)";
-            PreparedStatement sentenciaIntentos = cnx.prepareStatement(queryIntentos);
-
-            String queryEmail = "SELECT e.*, r.nombre as nombreRol FROM Empleados e "
-                    + "INNER JOIN Roles r ON e.idRol = r.id WHERE e.correo = ?";
-            PreparedStatement sentenciaEmail = cnx.prepareStatement(queryEmail);
-            sentenciaEmail.setString(1, email);
-            ResultSet resultadoEmail = sentenciaEmail.executeQuery();
-
-            if (!resultadoEmail.next()) {
-                rolN.setId(Long.valueOf("-1"));
+        try (Connection cnx = Conexion.conecta()) {
+            String querySelect = "SELECT 'Clientes' AS tabla, id, correo, contra FROM BDCamas.Clientes WHERE correo = ? "
+                    + "UNION "
+                    + "SELECT 'Empleados' AS tabla, id, correo, contra FROM BDCamas.Empleados WHERE correo = ?;";
+            PreparedStatement selectStmt = cnx.prepareStatement(querySelect);
+            selectStmt.setString(1, email);
+            selectStmt.setString(2, email);
+            ResultSet rsSelectExistente = selectStmt.executeQuery();
+            if (!rsSelectExistente.next()) {
+                rolN.setId(Long.valueOf("-1")); // Correo no registrado
                 logueado.setRol(rolN);
-                System.out.println("Correo no registrado.");
-                resultadoEmail.close();
-                sentenciaEmail.close();
-                cnx.close();
                 return logueado;
             }
-
-            long idEmpleado = resultadoEmail.getLong("id");
-            sentenciaIntentos.setLong(1, idEmpleado);
-            ResultSet resultadoIntentos = sentenciaIntentos.executeQuery();
-
-            int intentos = 0;
-            if (resultadoIntentos.next()) {
-                intentos = resultadoIntentos.getInt("cantidad");
+            String tipo = rsSelectExistente.getString("tabla");
+            long idUsuario = rsSelectExistente.getLong("id");
+            String hashPassword = rsSelectExistente.getString("contra");
+            if ("Empleados".equals(tipo)) {
+                String queryEmail = "SELECT e.*, r.nombre as nombreRol FROM Empleados e "
+                        + "INNER JOIN Roles r ON e.idRol = r.id WHERE e.correo = ?";
+                PreparedStatement sentenciaEmail = cnx.prepareStatement(queryEmail);
+                sentenciaEmail.setString(1, email);
+                ResultSet resultadoEmail = sentenciaEmail.executeQuery();
+                if (!resultadoEmail.next()) {
+                    rolN.setId(Long.valueOf("-1"));
+                    logueado.setRol(rolN);
+                    System.out.println("Correo no registrado.");
+                    resultadoEmail.close();
+                    sentenciaEmail.close();
+                    cnx.close();
+                    return logueado;
+                }
+                if (!checkIntentosFallidos(cnx, idUsuario)) {
+                    rolN.setId(Long.valueOf("-3")); // Demasiados intentos fallidos
+                    logueado.setRol(rolN);
+                    return logueado;
+                }
+                if (BCrypt.checkpw(psw, hashPassword)) {
+                    logueado.setId(idUsuario);
+                    registerSesion(cnx, idUsuario, ipCliente);
+                    resetIntentos(cnx, idUsuario);
+                    rolN.setId(Long.valueOf(resultadoEmail.getString("idRol"))); // Asigna rol
+                } else {
+                    incrementIntentos(cnx, idUsuario, ipCliente);
+                    rolN.setId(Long.valueOf("-2")); // Contraseña incorrecta
+                }
+            } else if ("Clientes".equals(tipo)) {
+                if (BCrypt.checkpw(psw, hashPassword)) {
+                    logueado.setId(idUsuario);
+                    rolN.setId(Long.valueOf(0)); // Asigna rol para cliente si es necesario
+                } else {
+                    rolN.setId(Long.valueOf("-2")); // Contraseña incorrecta
+                }
             }
-
-            if (intentos >= 3) {
-                rolN.setId(Long.valueOf("-3"));
-                logueado.setRol(rolN);
-                System.out.println("Acceso denegado. Demasiados intentos fallidos.");
-                resultadoEmail.close();
-                sentenciaEmail.close();
-                cnx.close();
-                return logueado;
-            }
-
-            String hashPassword = resultadoEmail.getString("contra");
-            if (BCrypt.checkpw(psw, hashPassword)) {
-                logueado.setId(idEmpleado);
-                rolN.setId(Long.valueOf(resultadoEmail.getString("idRol")));
-
-                String insertSession = "INSERT INTO HistorialSesion (idEmpleado, ip, usuarioCreador, usuarioModificador) VALUES (?, ?, ?, ?)";
-                PreparedStatement sentenciaSession = cnx.prepareStatement(insertSession);
-                sentenciaSession.setLong(1, logueado.getId());
-                sentenciaSession.setString(2, ipCliente);
-                sentenciaSession.setLong(3, logueado.getId());
-                sentenciaSession.setLong(4, logueado.getId());
-                sentenciaSession.executeUpdate();
-                sentenciaSession.close();
-
-                String resetIntentos = "DELETE FROM IntentosSession WHERE idEmpleado = ? AND fecha = CURDATE()";
-                PreparedStatement sentenciaReset = cnx.prepareStatement(resetIntentos);
-                sentenciaReset.setLong(1, idEmpleado);
-                sentenciaReset.executeUpdate();
-                sentenciaReset.close();
-            } else {
-                String updateIntentos = "INSERT INTO IntentosSession (idEmpleado, ip, cantidad, fecha, hora, usuarioModificador) "
-                        + "VALUES (?, ?, 1, CURDATE(), NOW(), ?) "
-                        + "ON DUPLICATE KEY UPDATE cantidad = cantidad + 1, ip = VALUES(ip), fecha = CURDATE(), hora = NOW()";
-                PreparedStatement sentenciaUpdate = cnx.prepareStatement(updateIntentos);
-                sentenciaUpdate.setLong(1, idEmpleado);
-                sentenciaUpdate.setString(2, ipCliente);
-                sentenciaUpdate.setLong(3, idEmpleado);
-                sentenciaUpdate.executeUpdate();
-                sentenciaUpdate.close();
-
-                rolN.setId(Long.valueOf("-2"));
-                System.out.println("Contraseña o Correo incorrecto.");
-            }
-
             logueado.setRol(rolN);
-            resultadoEmail.close();
-            sentenciaEmail.close();
-            cnx.close();
-            return logueado;
         } catch (SQLException e) {
             System.out.println("Error en authenticate: " + e.getMessage());
-            return logueado;
         }
+        return logueado;
     }
-
+    private boolean checkIntentosFallidos(Connection cnx, long idEmpleado) throws SQLException {
+        String queryIntentos = "SELECT cantidad FROM IntentosSession WHERE idEmpleado = ? AND fecha = CURDATE() AND hora >= DATE_SUB(NOW(), INTERVAL 1 HOUR)";
+        PreparedStatement sentenciaIntentos = cnx.prepareStatement(queryIntentos);
+        sentenciaIntentos.setLong(1, idEmpleado);
+        ResultSet resultadoIntentos = sentenciaIntentos.executeQuery();
+        int intentos = 0;
+        if (resultadoIntentos.next()) {
+            intentos = resultadoIntentos.getInt("cantidad");
+        }
+        return intentos < 3; // Devuelve true si hay menos de 3 intentos
+    }
+    private void registerSesion(Connection cnx, long idEmpleado, String ipCliente) throws SQLException {
+        String insertSession = "INSERT INTO HistorialSesion (idEmpleado, ip, usuarioCreador, usuarioModificador) VALUES (?, ?, ?, ?)";
+        PreparedStatement sentenciaSession = cnx.prepareStatement(insertSession);
+        sentenciaSession.setLong(1, idEmpleado);
+        sentenciaSession.setString(2, ipCliente);
+        sentenciaSession.setLong(3, idEmpleado);
+        sentenciaSession.setLong(4, idEmpleado);
+        sentenciaSession.executeUpdate();
+    }
+    private void resetIntentos(Connection cnx, long idEmpleado) throws SQLException {
+        String resetIntentos = "DELETE FROM IntentosSession WHERE idEmpleado = ? AND fecha = CURDATE()";
+        PreparedStatement sentenciaReset = cnx.prepareStatement(resetIntentos);
+        sentenciaReset.setLong(1, idEmpleado);
+        sentenciaReset.executeUpdate();
+    }
+    private void incrementIntentos(Connection cnx, long idEmpleado, String ipCliente) throws SQLException {
+        String updateIntentos = "INSERT INTO IntentosSession (idEmpleado, ip, cantidad, fecha, hora, usuarioModificador) "
+                + "VALUES (?, ?, 1, CURDATE(), NOW(), ?) "
+                + "ON DUPLICATE KEY UPDATE cantidad = cantidad + 1, ip = VALUES(ip), fecha = CURDATE(), hora = NOW()";
+        PreparedStatement sentenciaUpdate = cnx.prepareStatement(updateIntentos);
+        sentenciaUpdate.setLong(1, idEmpleado);
+        sentenciaUpdate.setString(2, ipCliente);
+        sentenciaUpdate.setLong(3, idEmpleado);
+        sentenciaUpdate.executeUpdate();
+    }
     public int createUser(String dni, String nombres, String correo, String contra,
             String apePaterno, String apeMaterno, String telefono, int idRol,
             int usuCreador) {
@@ -163,12 +163,9 @@ public class UsuarioDAO {
         PreparedStatement selectStmt = null;
         ResultSet rs = null;
         int filasInsertadas = 0;
-
         try {
             Conexion c = new Conexion();
             cnx = c.conecta();
-
-            // Prepara la consulta de inserción
             String insertQuery = "INSERT INTO empleados (nombres, apePaterno, apeMaterno, correo, contra, telefono, idRol, idEstado, dni, usuarioCreador, usuarioModificador) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             insertStmt = cnx.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
@@ -183,23 +180,16 @@ public class UsuarioDAO {
             insertStmt.setString(9, dni);
             insertStmt.setInt(10, usuCreador);
             insertStmt.setInt(11, usuCreador);
-
             filasInsertadas = insertStmt.executeUpdate();
-
             if (filasInsertadas > 0) {
-                // Obtener el ID del nuevo registro
                 rs = insertStmt.getGeneratedKeys();
                 if (rs.next()) {
                     int nuevoId = rs.getInt(1);
-
-                    // Consultar el registro recién creado
                     String selectQuery = "SELECT * FROM empleados WHERE id=?";
                     selectStmt = cnx.prepareStatement(selectQuery);
                     selectStmt.setInt(1, nuevoId);
                     ResultSet rsSelect = selectStmt.executeQuery();
-
                     if (rsSelect.next()) {
-                        // Mostrar el registro creado
                         System.out.println("Usuario Creado Correctamente:");
                         System.out.println("ID: " + rsSelect.getInt("id"));
                         System.out.println("DNI: " + rsSelect.getString("dni"));
@@ -225,7 +215,6 @@ public class UsuarioDAO {
             System.out.println("Error en crearUsuario: " + e.getMessage());
             return 0;
         } finally {
-            // Cierra los recursos en el bloque finally
             try {
                 if (insertStmt != null) {
                     insertStmt.close();
@@ -243,13 +232,10 @@ public class UsuarioDAO {
                 System.out.println("Error al cerrar recursos: " + e.getMessage());
             }
         }
-
         return filasInsertadas;
     }
-
     public int editUser(int id, String dni, String nombres, String correo, String contra,
             String apePaterno, String apeMaterno, String telefono, int idRol, int idEstado) {
-        // Validación de campos
         if (dni == null || dni.trim().isEmpty() || dni.length() != 8) {
             System.out.println("El DNI debe tener exactamente 8 dígitos.");
             return 0;
@@ -280,12 +266,9 @@ public class UsuarioDAO {
             System.out.println("El teléfono debe tener exactamente 9 dígitos.");
             return 0;
         }
-
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
-
-            // Prepara la consulta de actualización
             String query = "UPDATE empleados SET dni=?, nombres=?, correo=?, contra=?, "
                     + "apePaterno=?, apeMaterno=?, idEstado=?, idRol=?, telefono=? WHERE id=?";
             PreparedStatement sentencia = cnx.prepareStatement(query);
@@ -299,11 +282,8 @@ public class UsuarioDAO {
             sentencia.setInt(8, idRol);
             sentencia.setString(9, telefono);
             sentencia.setInt(10, id);
-
             int filasActualizadas = sentencia.executeUpdate();
-
             if (filasActualizadas > 0) {
-                // Imprime los cambios realizados
                 System.out.println("Registro modificado correctamente.");
                 System.out.println("Cambios realizados:");
                 System.out.println("ID: " + id);
@@ -321,35 +301,28 @@ public class UsuarioDAO {
             }
             sentencia.close();
             cnx.close();
-
             return filasActualizadas > 0 ? 1 : 0;
         } catch (SQLException e) {
             System.out.println("Error en editUser: " + e.getMessage());
             return 0;
         }
     }
-
     public int deleteUser(String id) {
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
-
             String query = "DELETE FROM empleados WHERE id=?";
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, id);
-
             int filasEliminadas = sentencia.executeUpdate();
-
             sentencia.close();
             cnx.close();
-
             return filasEliminadas;
         } catch (SQLException e) {
             System.out.println("Error en deleteUser: " + e.getMessage());
             return 0;
         }
     }
-
     public Usuario getUserByDni(String dni) {
         Usuario usr = new Usuario();
         if (dni.length() != 8 || !dni.matches("\\d{8}")) {
@@ -379,7 +352,6 @@ public class UsuarioDAO {
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, dni);
             ResultSet resultado = sentencia.executeQuery();
-
             while (resultado.next()) {
                 usr.setId(resultado.getLong("empleado_id"));
                 usr.setDni(resultado.getString("dni"));
@@ -388,17 +360,14 @@ public class UsuarioDAO {
                 usr.setApeMaterno(resultado.getString("apeMaterno"));
                 usr.setTelefono(resultado.getString("telefono"));
                 usr.setCorreo(resultado.getString("correo"));
-
                 Rol rl = new Rol();
                 rl.setId(resultado.getLong("rol_id"));
                 rl.setNombre(resultado.getString("rol_nombre"));
                 rl.setDescripcion(resultado.getString("rol_descripcion"));
-
                 EstadoEmpleado esEmpleado = new EstadoEmpleado();
                 esEmpleado.setId(resultado.getLong("estado_id"));
                 esEmpleado.setNombre(resultado.getString("estado_nombre"));
                 esEmpleado.setDescripcion(resultado.getString("estado_descripcion"));
-
                 usr.setRol(rl);
                 usr.setEstado(esEmpleado);
             }
@@ -409,11 +378,8 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             System.out.println("Error en getEmpleadoBy id: " + e.getMessage());
         }
-
         return usr;
-
     }
-
     public Usuario getUserById(String id) {
         Usuario usr = new Usuario();
         try {
@@ -439,7 +405,6 @@ public class UsuarioDAO {
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, id);
             ResultSet resultado = sentencia.executeQuery();
-
             while (resultado.next()) {
                 usr.setId(resultado.getLong("empleado_id"));
                 usr.setDni(resultado.getString("dni"));
@@ -448,17 +413,14 @@ public class UsuarioDAO {
                 usr.setApeMaterno(resultado.getString("apeMaterno"));
                 usr.setTelefono(resultado.getString("telefono"));
                 usr.setCorreo(resultado.getString("correo"));
-
                 Rol rl = new Rol();
                 rl.setId(resultado.getLong("rol_id"));
                 rl.setNombre(resultado.getString("rol_nombre"));
                 rl.setDescripcion(resultado.getString("rol_descripcion"));
-
                 EstadoEmpleado esEmpleado = new EstadoEmpleado();
                 esEmpleado.setId(resultado.getLong("estado_id"));
                 esEmpleado.setNombre(resultado.getString("estado_nombre"));
                 esEmpleado.setDescripcion(resultado.getString("estado_descripcion"));
-
                 usr.setRol(rl);
                 usr.setEstado(esEmpleado);
             }
@@ -469,11 +431,8 @@ public class UsuarioDAO {
         } catch (SQLException e) {
             System.out.println("Error en getEmpleadoBy id: " + e.getMessage());
         }
-
         return usr;
-
     }
-
     public List<Usuario> getUsers() {
         List<Usuario> lista = new ArrayList<>();
         try {
@@ -498,7 +457,6 @@ public class UsuarioDAO {
                     + "JOIN BDCamas.EstadosEmpleado es ON e.idEstado = es.id";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
-
             while (resultado.next()) {
                 Usuario usr = new Usuario();
                 usr.setId(resultado.getLong("empleado_id"));
@@ -508,22 +466,18 @@ public class UsuarioDAO {
                 usr.setApeMaterno(resultado.getString("apeMaterno"));
                 usr.setTelefono(resultado.getString("telefono"));
                 usr.setCorreo(resultado.getString("correo"));
-
                 Rol rl = new Rol();
                 rl.setId(resultado.getLong("rol_id"));
                 rl.setNombre(resultado.getString("rol_nombre"));
                 rl.setDescripcion(resultado.getString("rol_descripcion"));
-
                 EstadoEmpleado esEmpleado = new EstadoEmpleado();
                 esEmpleado.setId(resultado.getLong("estado_id"));
                 esEmpleado.setNombre(resultado.getString("estado_nombre"));
                 esEmpleado.setDescripcion(resultado.getString("estado_descripcion"));
-
                 usr.setRol(rl);
                 usr.setEstado(esEmpleado);
                 lista.add(usr);
             }
-
             resultado.close();
             sentencia.close();
             cnx.close();

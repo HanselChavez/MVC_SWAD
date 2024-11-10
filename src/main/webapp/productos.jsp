@@ -1,3 +1,4 @@
+<%@page import="model.ImagenProducto"%>
 <%@page import="model.Producto"%>
 <%@page import="dao.ProductoDAO"%>
 <%@page import="model.Categoria"%>
@@ -172,11 +173,29 @@
                     <div class="grid grid-cols-3 xl:grid-cols-4 gap-5 auto-rows-max">
                         <% for (Producto producto : productos) {%>
                         <div class="p-4 bg-white border text-center shadow rounded">
-                            <a href="?pagina=detalle&idProducto=<%= producto.getId()%>" class="text-xl hover:text-yellow-600 font-bold transition-all duration-500 easy-in-out">
+                            <a href="/detalle?id=<%= producto.getId()%>" class="text-xl hover:text-yellow-600 font-bold transition-all duration-500 easy-in-out">
                                 <%= producto.getNombre()%>
                             </a>
-                            <div class="flex items-center justify-center  object-fit overflow-hidden">
-                                <img src="img/<%= producto.getCategoria().getNombre()%>/<%= producto.getImagen()%>" alt="Producto" class="w-2/3 mx-auto h-auto object-cover mb-2">
+                            <div class="flex items-center justify-center object-fit overflow-hidden">
+                                <%
+                                    // Recorrer la lista de imágenes del producto
+                                    String imagenPrincipal = null;
+                                    for (ImagenProducto imagen : producto.getListaImagenes()) {
+                                        if (imagen.isEsPrincipal()) {
+                                            imagenPrincipal = imagen.getImagen(); // Obtener la URL de la imagen principal
+                                            break; // Salir del bucle cuando se encuentra la imagen principal
+                                        }
+                                    }
+                                %>
+                                <% if (imagenPrincipal != null) {%>
+                                <img src="<%= imagenPrincipal%>" 
+                                     alt="Producto" 
+                                     class="rounded-lg my-4 mx-auto h-auto object-cover">
+                                <% } else { %>
+                                <img src="/img/default-img.jpg" 
+                                     alt="Producto por defecto" 
+                                     class="rounded-lg my-4 mx-auto h-auto object-cover">
+                                <% }%>
                             </div>
                             <h6 class="text-lg font-medium text-gray-600"><%= producto.getDescripcion()%></h6>
                             <p class="text-center font-semibold text-lg">S/<%= producto.getPrecioVenta()%></p>

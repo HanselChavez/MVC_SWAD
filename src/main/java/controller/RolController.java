@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
-
 import dao.RolDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,19 +9,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Rol;
-
-/**
- *
- * @author Chavez
- */
 @WebServlet(name = "Rols", urlPatterns = {"/Rols", "/Rols/add", "/Rols/edit", "/Rols/delete"})
 public class RolController extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-
         switch (action) {
             case "/Rols/add":
                 handleAddRol(request, response);
@@ -42,12 +30,10 @@ public class RolController extends HttpServlet {
                 break;
         }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-
         switch (action) {
             case "/Rols/add":
                 request.getRequestDispatcher("/admin/index.jsp?pagina=rol").forward(request, response);
@@ -63,11 +49,8 @@ public class RolController extends HttpServlet {
                 break;
         }
     }
-
     private void handleAddRol(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Aquí se maneja la lógica para agregar un usuario
-        // Los parámetros se obtienen del request como en tu código original
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         System.out.println("***************AQUI ANTES DE CREAR***************");
@@ -76,24 +59,20 @@ public class RolController extends HttpServlet {
         System.out.println("***************DESPUES DE CREAR***************");
         request.getRequestDispatcher("/admin/index.jsp?pagina=rol").forward(request, response);
     }
-
     private void handlDeleteRol(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
-
         System.out.println("***************AQUI ANTES DE ELIMINAR***************");
         RolDAO rol = new RolDAO();
         rol.deleteRol(id);
         System.out.println("***************DESPUES DE ELIMINAR***************");
         request.getRequestDispatcher("/admin/index.jsp?pagina=rol").forward(request, response);
     }
-
     private void handleEditRol(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
-
         System.out.println("***************AQUI ANTES DE EDITAR***************");
         RolDAO rol = new RolDAO();
         rol.editRol(id, nombre, descripcion);

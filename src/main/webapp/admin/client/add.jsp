@@ -46,7 +46,7 @@
         </div> 
         <div class="flex flex-col xs:flex-row gap-0.5 justify-between xs:items-center  w-full ">
             <label for="cdirec" class="sm:text-lg font-medium xs:w-2/4 sm:w-2/5">Correo:</label>
-            <input id="cdirec" name="direccion" type="text" class="bg-transparent outline-none 
+            <input id="cdirec" name="correo" type="text" class="bg-transparent outline-none 
                    px-2 py-1 pr-4 font-sans w-full border  border-secondary-300 rounded-md " value="">
         </div> 
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full  ">

@@ -99,10 +99,9 @@
                     </a>
                 </div>
                 <form class="mt-8 flex flex-col gap-4" action="/auth?accion=validar" method="post" onsubmit="return validateForm()">
-                    <!-- Mensaje de error -->
-                   <!-- <c:if test="${not empty error}">
-                        <p class="font-semibold uppercase py-2 text-center bg-red-500 text-white">${error}</p>
-                    </c:if>-->
+                    <p class="font-semibold uppercase py-2 text-center bg-green-500 text-white ${empty success ? 'hidden' : ''}">
+                        ${success}
+                    </p>
                     <p class="font-semibold uppercase py-2 text-center bg-red-500 text-white ${empty error ? 'hidden' : ''}">
                         ${error}
                     </p>

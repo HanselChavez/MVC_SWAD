@@ -66,19 +66,7 @@
                 <td><%= prd.getPrecioCompra()%></td>
                 <td class="border-x border-stone-500"><%= prd.getPrecioVenta()%></td>
 
-                <td class="text-xl flex justify-center items-center gap-2 "             
-                    data-id="<%=prd.getId()%>"
-                    data-descrip="<%= prd.getDescripcion()%>"
-                    data-nombre="<%= prd.getNombre()%>"
-                    data-idcat="<%= prd.getCategoria().getId()%>"       
-                    data-idpro="<%= prd.getProveedor().getId()%>"
-                    data-idest="<%= prd.getEstado().getId()%>"
-                    data-estado="<%= prd.getEstado().getNombre()%>"
-                    data-categ="<%= prd.getCategoria().getNombre()%>"
-                    data-prov="<%= prd.getProveedor().getEmpresa()%>"
-                    data-pcompra="<%= prd.getPrecioCompra()%>"
-                    data-pventa="<%= prd.getPrecioVenta()%>"
-                    data-imagen="<%= prd.getImagen()%>">
+                <td class="text-xl flex justify-center items-center gap-2">
                     <a class="cursor-pointer text-green-700 hover:text-green-500 transition-all duration-500 fa-solid fa-pen-to-square"
                        href="/admin?pagina=producto&accion=edit&id=<%= prd.getId()%>"></a>
                     <a href="/admin?pagina=producto&accion=details&id=<%= prd.getId()%>" class="cursor-pointer text-blue-700 hover:text-blue-500 transition-all duration-500 fa-solid fa-circle-info"></a>

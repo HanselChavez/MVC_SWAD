@@ -6,13 +6,13 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="SWAD_Proyecto" />
+        <module name="SWAD_Camas" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="SWAD_Proyecto" options="-endorseddirs F:\apache-tomcat-9.0.90\SWAD_Proyecto\target/endorsed" />
+      <module name="SWAD_Camas" options="-endorseddirs F:\apache-tomcat-9.0.90\SWAD_Camas\target/endorsed" />
     </option>
   </component>
 </project>

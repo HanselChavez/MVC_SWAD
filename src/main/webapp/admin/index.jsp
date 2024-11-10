@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
- if (session.getAttribute("userlog") != null && session.getAttribute("userlog").toString().equals("1")) {
+    if (session.getAttribute("userlog") != null && session.getAttribute("userlog").toString().equals("1")) {
 %>
 <!DOCTYPE html >
 <html>
@@ -173,8 +173,8 @@
                     </li>
                 </ul>
             </aside>
-            <div class="bg-neutral-300 p-4 h-[calc(100vh-96px)] w-full md:w-[calc(100%-16rem)]">
-                <div class="h-full ">
+            <div class="bg-neutral-300 h-[calc(100vh-96px)] w-full md:w-[calc(100%-16rem)]">
+                <div class="h-full overflow-y-auto p-4 y-scroll">
                     <% String view = (String) request.getAttribute("view");  %>
                     <% if (view != null) {%>
                     <jsp:include page="<%=view%>" />
@@ -188,7 +188,15 @@
     </body>
 </html>
 <%
-    } else {
-        response.sendRedirect("../auth/login.jsp");
+} else {
+%>
+
+<div>
+    <h2 class="text-red-500 text-4xl font-bold">
+        Acceso no autorizado chupapinga
+    </h2>
+    <a href="/auth/login.jsp">Iniciar Sesion</a>
+</div>
+<%
     }
 %>

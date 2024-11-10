@@ -1,5 +1,4 @@
 package controller;
-
 import dao.CategoriaDAO;
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
@@ -10,15 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Categoria;
-
 @WebServlet(name = "Categories", urlPatterns = {"/Categories", "/Categories/add", "/Categories/edit", "/Categories/delete"})
 public class CategoryController extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-
         switch (action) {
             case "/Categories/add":
                 handleAddCategory(request, response);
@@ -34,12 +30,10 @@ public class CategoryController extends HttpServlet {
                 break;
         }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-
         switch (action) {
             case "/Categories/add":
             case "/Categories/edit":
@@ -51,8 +45,6 @@ public class CategoryController extends HttpServlet {
                 break;
         }
     }
-
-
     public void handleAddCategory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
@@ -63,10 +55,8 @@ public class CategoryController extends HttpServlet {
         String idModificador = sesion.getAttribute("idUsuario").toString();
         cat.createCategory(nombre, descripcion, idModificador);
         System.out.println("***************DESPUES DE CREAR***************");
-
         response.sendRedirect("/admin?pagina=categoria");
     }
-
     private void handlDeleteCategory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Long id = Long.valueOf(request.getParameter("id"));
@@ -74,10 +64,8 @@ public class CategoryController extends HttpServlet {
         CategoriaDAO rol = new CategoriaDAO();
         rol.deleteCategory(id);
         System.out.println("***************DESPUES DE ELIMINAR***************");
-
         response.sendRedirect("/admin?pagina=categoria");
     }
-
     private void handleEditCategory(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Long id = Long.valueOf(request.getParameter("id"));
@@ -87,7 +75,6 @@ public class CategoryController extends HttpServlet {
         CategoriaDAO cat = new CategoriaDAO();
         cat.editCategory(id, nombre, descripcion);
         System.out.println("***************DESPUES DE EDITAR***************");
-
         response.sendRedirect("/admin?pagina=categoria");
     }
 }

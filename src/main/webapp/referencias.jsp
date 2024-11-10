@@ -27,6 +27,7 @@
         --contraste:#f9bf29;
 
     }
+
     .btn.btn-primario {
         border: 1px solid var(--primario);
         background-color: var(--primario);
@@ -219,7 +220,7 @@
         overflow-wrap: break-word !important; /* Para navegadores modernos */
         word-wrap: break-word !important;
     }
-    
+
     @media screen and (min-width: 990px) {
         .bgservicio {
             background: url("./images/bg-desktop-img.jpg");

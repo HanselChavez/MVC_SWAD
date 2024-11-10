@@ -17,14 +17,17 @@ public class Conexion {
 
     public static Connection conecta() {
         try {
-           /* Dotenv dotenv = Dotenv.configure()
+            /* Dotenv dotenv = Dotenv.configure()
                     .directory("/")
                     .load();*/
-            /*String usr = dotenv.get("user");
+ /*String usr = dotenv.get("user");
             String psw = dotenv.get("password");*/
+ /* String usr = "root";
+            String psw = "root";
+                        String url = "jdbc:mysql://localhost:33066/BDCamas";*/
             String usr = "root";
-            String psw = "977966335";
-            String url = "jdbc:mysql://localhost:3307/bdcamas";
+            String psw = "admin";
+            String url = "jdbc:mysql://localhost:3309/BDCamas";
             Class.forName("com.mysql.cj.jdbc.Driver");
             cnx = DriverManager.getConnection(url, usr, psw);
         } catch (SQLException e) {

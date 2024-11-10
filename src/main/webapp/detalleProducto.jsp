@@ -1,13 +1,47 @@
+<%@page import="model.ImagenProducto"%>
+<%@page import="dao.ProductoDAO"%>
+<%@page import="model.Producto"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<%@page import="java.text.DecimalFormat" %>
 
+<%
+    ProductoDAO PD = new ProductoDAO();
+    String idParam = request.getParameter("id");
+    Long id = Long.parseLong(idParam);
+    Producto producto = PD.getProductById(id);
+    if (producto == null) {
+        response.sendRedirect("productos.jsp");
+    }
+    DecimalFormat df = new DecimalFormat("#0.00");
+    String precioFormateado = df.format(producto.getPrecioVenta());
+%>
+<!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <title>Detalles del Producto</title><%@include file="./referencias.jsp" %>
+        <style>
+            #imageContainer {
+                position: relative;
+                overflow: hidden;
+                cursor: zoom-in;
+            }
+            #zoomImage {
+                transition: transform 0.3s ease-in-out;
+                transform-origin: center center;
+                position: absolute;
+            }
+            .scroll-hidden::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+                display: none;
+
+            }
+        </style>
     </head>
     <body id="body" class="font-raleway overflow-x-hidden">     
+
         <header class="bg-primario w-full h-24  top-0 fixed z-50 ">
             <div class="container max-w-[1200px] h-full flex justify-between p-2 md:p-4 items-center  ">
                 <a class="w-28 xs:w-32 text-3xl text-white md:w-40" href="/">
@@ -76,38 +110,73 @@
 
             </div>
         </header>
-        <main class=" md:pt-24 ">
+        <main >
             <div class="max-w-[1200px] mt-28 mx-auto p-5">
                 <!-- Breadcrumb -->
-                <div class="text-sm mb-4">
-                    <a href="?pagina=productos" class=" text-black hover:text-blue-600 transition-all duration-500 easy-in-out">Productos</a> 
-                    <span class="mx-2"> >> </span>
-                    <span class="text-gray-600 ">Nombre Producto</span>
-                </div>
+
 
                 <div class="flex w-auto mx-auto flex-wrap md:flex-nowrap gap-5">
-                    <!-- Left Section: Image Gallery -->
                     <div class="flex flex-row gap-4 items-start">
-                        <div class="w-[30rem] border-gray-400 h-[30rem] border p-4"> 
-                            <img src="img/Camas/Cama1.5Jade.jpg" alt="Cama" class="object-cover w-full h-full ">
+                        <div class="w-[30rem] border-gray-200 rounded-lg bg-gray-200 h-[30rem] border overflow-hidden relative" id="imageContainer">
+                            <div class="flex h-full justify-center items-center object-fit hover:cursor-pointer overflow-hidden">
+                                <%
+                                    // Recorrer la lista de imágenes del producto
+                                    String imagenPrincipal = null;
+                                    for (ImagenProducto imagen : producto.getListaImagenes()) {
+                                        if (imagen.isEsPrincipal()) {
+                                            imagenPrincipal = imagen.getImagen(); // Obtener la URL de la imagen principal
+                                            break; // Salir del bucle cuando se encuentra la imagen principal
+                                        }
+                                    }
+                                %>
+                                <% if (imagenPrincipal != null) {%>
+                                <img src="<%= imagenPrincipal%>" alt="<%= producto.getNombre()%>" 
+                                     class="rounded-lg w-full object-cover hover:cursor-pointer transition-transform duration-300 ease-in-out"
+                                     id="zoomImage">
+                                <% } else {%>
+                                <img src="img/default-img.jpg" alt="<%= producto.getNombre()%>" alt="Producto por defecto" 
+                                     class="rounded-lg w-full object-cover hover:cursor-pointer h-full transition-transform duration-300 ease-in-out">
+                                <% }%>
+                            </div>
                         </div>
-                        <div class="flex flex-col gap-2.5 items-start justify-center">
-                            <img src="img/Camas/Cama1.5Jade.jpg" alt="Thumbnail" class="w-28 border-gray-400  h-28 object-cover border">
-                            <img src="img/Camas/Cama1.5Jade.jpg" alt="Thumbnail" class="w-28 border-gray-400  h-28 object-cover border">
-                            <img src="img/Camas/Cama1.5Jade.jpg" alt="Thumbnail" class="w-28 border-gray-400  h-28 object-cover border">
-                            <img src="img/Camas/Cama1.5Jade.jpg" alt="Thumbnail" class="w-28 border-gray-400  h-28 object-cover border">
+
+                        <div class="flex items-start justify-center max-h-[30rem] scroll-hidden overflow-y-auto overflow-x-hidden">
+                            <div class="flex flex-col gap-2.5 cursor-pointer">
+                                <div class="h-20 w-20 flex items-center justify-center border transition-all duration-500 easy-in-out hover:border-black border-gray-400 rounded-lg"
+                                     data-img="<%= imagenPrincipal%>" id="selected" onmouseover="changeImage(this)"> 
+                                    <img src="<%= imagenPrincipal%>" alt="Thumbnail" 
+                                         class="object-fit hover:cursor-pointer" >
+                                </div>
+
+                                <%
+                                    // Recorrer la lista de imágenes secundarias y mostrarlas
+                                    for (ImagenProducto imagen : producto.getListaImagenes()) {
+                                        if (!imagen.isEsPrincipal()) { // Solo mostrar imágenes secundarias
+                                %>
+                                <div class="h-20 w-20 flex items-center justify-center border transition-all duration-500 easy-in-out hover:border-black border-gray-400 rounded-lg"
+                                     data-img="<%= imagen.getImagen()%>" onmouseover="changeImage(this)"> <!-- Escapar comillas simples -->
+                                    <img src="<%= imagen.getImagen()%>" alt="Thumbnail" 
+                                         class="object-fit hover:cursor-pointer">
+                                </div>
+                                <%
+                                        }
+                                    }
+                                %>
+                            </div>
                         </div>
+
                     </div>
 
                     <!-- Right Section: Product Info -->
                     <div class="flex-1">
-                        <h1 class="text-2xl font-bold">Cama Box gris 1.5 PLZ</h1>
-                        <p class="text-lg text-green-600 mb-2">S/512</p>
-                        <p class="text-gray-700 mb-4">Estructura interna en madera | La madera Cuenta con tratamiento de secado al horno|Perfecto para cachudos
-                            |Forrado en tela velvet en los lados y notex en la tapa | Cuenta con 4 pernos para la adaptación de cabeceros | 4 patas cromadas +
-                            | Estructura interna en madera pino y nordex de 3m.m | Espuma de 2 pulgadas | Tapizada en tela velvet | 18 botones en la tapa</p>
-
-                        <!-- Medidas -->
+                        <div class="text-sm mb-4">
+                            <a href="/productos" class=" text-black hover:text-blue-600 transition-all duration-500 easy-in-out">Productos</a> 
+                            <span class="mx-2"> >> </span>
+                            <span class="text-gray-600 "><%=producto.getNombre()%></span>
+                        </div>
+                        <h1 class="text-2xl font-bold"><%=producto.getNombre()%></h1>
+                        <p class="text-lg text-green-600 mb-2">S/<%=precioFormateado%></p>
+                        <p class="text-gray-700 mb-4"> <%=producto.getDescripcion()%></p>
                         <div class="mb-4">
                             <span class="font-bold">Cantidad:</span>
                             <input type="number" value="2" min="1" max="5" class="w-16 ml-2 border p-1 text-center">
@@ -126,7 +195,7 @@
                         </div>
 
                         <!-- Código de Producto -->
-                        <p class="mb-4"><strong>Cod:</strong> PROD0001</p>
+                        <p class="mb-4"><strong>Cod:</strong> PROD00<%=producto.getId()%></p>
 
                         <!-- Botones -->
                         <div class="flex gap-4 mb-4">
@@ -441,6 +510,25 @@
          </button>-->
     </div>
     <script>
+        let selectedElement = document.getElementById('selected');
+        selectedElement.classList.add('border-black');
+
+        function changeImage(element) {
+            // Cambiar la fuente de la imagen principal
+            const url = element.getAttribute('data-img');
+
+            // Cambiar la imagen principal
+            document.getElementById('zoomImage').src = url;
+
+            // Si hay un elemento previamente seleccionado, quitarle el borde negro
+            if (selectedElement) {
+                selectedElement.classList.remove('border-black');
+            }
+
+            // Agregar el borde negro al nuevo elemento seleccionado
+            selectedElement = element;
+            selectedElement.classList.add('border-black');
+        }
         const navbutton = document.getElementById('showNav');
         const closenav = document.getElementById('closeNav');
         const navBar = document.getElementById("navbar");
@@ -456,6 +544,24 @@
         overlay?.addEventListener('click', () => {
             navBar?.classList.add('translate-x-full');
             overlay.classList.add('hidden');
+        });
+
+        const imageContainer = document.getElementById("imageContainer");
+        const zoomImage = document.getElementById("zoomImage");
+
+        imageContainer.addEventListener("mousemove", (e) => {
+            const {left, top, width, height} = imageContainer.getBoundingClientRect();
+            const x = e.clientX - left;
+            const y = e.clientY - top;
+
+            // Activa el zoom y desplaza la imagen
+            zoomImage.style.transform = "scale(1.5)";
+            zoomImage.style.transformOrigin = " " + (x / width) * 100 + "% " + (y / height) * 100 + "%";
+        });
+
+        imageContainer.addEventListener("mouseleave", () => {
+            // Restablece la escala al salir del área
+            zoomImage.style.transform = "scale(1)";
         });
 
     </script>

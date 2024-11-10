@@ -3,9 +3,9 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>Dayanara</groupId>
     <artifactId>SWAD_Camas</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1</version>
     <packaging>war</packaging>
-    <name>SWAD_Camas-1.0-SNAPSHOT</name>
+    <name>SWAD_Camas</name>
     
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -17,6 +17,30 @@
     </properties>
     
     <dependencies>
+
+  <!-- JWT  -->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>0.11.5</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>0.11.5</version>
+            <scope>runtime</scope>
+        </dependency>
+
+
+
+
+
+
         <dependency>
             <groupId>org.mindrot</groupId>
             <artifactId>jbcrypt</artifactId>
@@ -70,6 +94,17 @@
             <artifactId>mockito-junit-jupiter</artifactId>
             <version>4.6.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.lbovolini</groupId>
+            <artifactId>ObjectMapper</artifactId>
+            <version>0.2.3</version>
+            <type>jar</type>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.15.2</version> <!-- Usa la versión más reciente -->
         </dependency>
     </dependencies>
     <build>

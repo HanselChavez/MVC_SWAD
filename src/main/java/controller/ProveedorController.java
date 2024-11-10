@@ -1,9 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
- */
 package controller;
-
 import dao.ProveedorDAO;
 import java.io.IOException;
 import java.sql.Date;
@@ -13,19 +8,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Proveedor;
-
-/**
- *
- * @author Estudiante
- */
 @WebServlet(name = "Proveedor", urlPatterns = {"/Proveedor", "/Proveedor/add", "/Proveedor/edit", "/Proveedor/delete"})
 public class ProveedorController extends HttpServlet {
-
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-
         switch (action) {
             case "/Proveedor/add":
                 handleAddProveedor(request, response);
@@ -41,12 +29,10 @@ public class ProveedorController extends HttpServlet {
                 break;
         }
     }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
-
         switch (action) {
             case "/Proveedor/add":
                 request.getRequestDispatcher("/admin/index.jsp?pagina=proveedor").forward(request, response);
@@ -64,25 +50,20 @@ public class ProveedorController extends HttpServlet {
     }
     private void handleAddProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Aquí se maneja la lógica para agregar un usuario
-        // Los parámetros se obtienen del request como en tu código original
         String empresa = request.getParameter("razon");
         String encargado = request.getParameter("encargado");
         String ruc = request.getParameter("ruc");
         String direccion = request.getParameter("direccion");
         String email = request.getParameter("email");
-
         System.out.println("***************AQUI ANTES DE CREAR***************");
         ProveedorDAO prov = new ProveedorDAO();
         prov.createProveedor(empresa,ruc,direccion,email,email);
         System.out.println("***************DESPUES DE CREAR***************");
         request.getRequestDispatcher("/admin/index.jsp?pagina=proveedor").forward(request, response);
     }
-
     private void handleDeleteProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
-
         System.out.println("***************AQUI ANTES DE ELIMINAR***************");
         ProveedorDAO prov = new ProveedorDAO();
        System.out.println("ID es: "+ id);
@@ -90,7 +71,6 @@ public class ProveedorController extends HttpServlet {
         System.out.println("***************DESPUES DE ELIMINAR***************");
         request.getRequestDispatcher("/admin/index.jsp?pagina=proveedor").forward(request, response);
     }
-
     private void handleEditProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
@@ -99,7 +79,6 @@ public class ProveedorController extends HttpServlet {
         String ruc = request.getParameter("ruc");
         String direccion = request.getParameter("direccion");
         String email = request.getParameter("email");
-
         System.out.println("***************AQUI ANTES DE EDITAR***************");
         ProveedorDAO prov = new ProveedorDAO();
         prov.editProveedor(id, empresa, encargado,ruc,direccion,email);
