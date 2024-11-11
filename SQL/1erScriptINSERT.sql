@@ -1,4 +1,4 @@
-select * from Empleados;
+select * from SessionesActivas;
 INSERT INTO dbcamasutra.Categorias (nombre, descripcion, usuarioCreador, usuarioModificador)
 VALUES 
 ('Colchones', 'Categoría de productos relacionados con colchones', 1, 1),

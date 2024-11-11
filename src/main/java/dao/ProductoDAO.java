@@ -97,7 +97,7 @@ public class ProductoDAO {
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
-            String queryUpdateProducto = "UPDATE BDCamas.Productos SET "
+            String queryUpdateProducto = "UPDATE Productos SET "
                     + "nombre = ?, "
                     + "descripcion = ?, "
                     + "precioCompra = ?, "
@@ -120,7 +120,7 @@ public class ProductoDAO {
             int filasActualizadas = sentenciaProducto.executeUpdate();
             sentenciaProducto.close();
             if (imagenPrincipal != null) {
-                String queryUpdateImagenPrincipal = "UPDATE BDCamas.Imagenes SET img = ?, esPrincipal = TRUE WHERE idProducto = ? AND esPrincipal = TRUE;";
+                String queryUpdateImagenPrincipal = "UPDATE Imagenes SET img = ?, esPrincipal = TRUE WHERE idProducto = ? AND esPrincipal = TRUE;";
                 PreparedStatement sentenciaPrincipal = cnx.prepareStatement(queryUpdateImagenPrincipal);
                 sentenciaPrincipal.setString(1, imagenPrincipal);
                 System.out.println("IMAGEN PRINCIPAL" + imagenPrincipal);
@@ -138,12 +138,12 @@ public class ProductoDAO {
                     sentenciaInsert.close();
                 }
             }
-            String queryDeleteSecundarias = "DELETE FROM BDCamas.Imagenes WHERE idProducto = ? AND esPrincipal = FALSE;";
+            String queryDeleteSecundarias = "DELETE FROM Imagenes WHERE idProducto = ? AND esPrincipal = FALSE;";
             PreparedStatement sentenciaDelete = cnx.prepareStatement(queryDeleteSecundarias);
             sentenciaDelete.setInt(1, Integer.parseInt(idProducto));
             sentenciaDelete.executeUpdate();
             sentenciaDelete.close();
-            String queryInsertSecundarias = "INSERT INTO BDCamas.Imagenes (idProducto, img, esPrincipal) VALUES (?, ?, FALSE);";
+            String queryInsertSecundarias = "INSERT INTO Imagenes (idProducto, img, esPrincipal) VALUES (?, ?, FALSE);";
             PreparedStatement sentenciaInsert = cnx.prepareStatement(queryInsertSecundarias);
             for (String img : imagenesSecundarias) {
                 System.out.println("IMGS EDIT: " + img);

@@ -32,7 +32,7 @@ public class EstadoProductoDAO {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
 
-            String query = "SELECT * FROM BDCamas.EstadosProducto where id=?";
+            String query = "SELECT * FROM EstadosProducto where id=?";
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, id);
             ResultSet resultado = sentencia.executeQuery();

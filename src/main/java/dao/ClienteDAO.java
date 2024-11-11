@@ -55,11 +55,11 @@ public class ClienteDAO {
             Conexion c = new Conexion();
             cnx = c.conecta();
             String querySelect = "SELECT 'Clientes' AS tabla, id, correo \n"
-                    + "FROM BDCamas.Clientes \n"
+                    + "FROM Clientes \n"
                     + "WHERE correo = ? \n"
                     + "UNION\n"
                     + "SELECT 'Empleados' AS tabla, id, correo \n"
-                    + "FROM BDCamas.Empleados \n"
+                    + "FROM Empleados \n"
                     + "WHERE correo = ? ;";
             selectStmt = cnx.prepareStatement(querySelect);
             selectStmt.setString(1, correo);
@@ -70,7 +70,7 @@ public class ClienteDAO {
             }
             System.out.println("VERIFICADO EN TABLA CLIENTE Y EMPLEADOS");
             // Prepara la consulta de inserción
-            String insertQuery = "INSERT INTO BDCamas.Clientes (nombres, apePaterno,apeMaterno, dni,contra, correo, usuarioCreador, usuarioModificador,telefono) "
+            String insertQuery = "INSERT INTO Clientes (nombres, apePaterno,apeMaterno, dni,contra, correo, usuarioCreador, usuarioModificador,telefono) "
                     + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,?)";
             insertStmt = cnx.prepareStatement(insertQuery, Statement.RETURN_GENERATED_KEYS);
             insertStmt.setString(1, nombres);
@@ -153,7 +153,7 @@ public class ClienteDAO {
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
-            String query = "SELECT * FROM BDCamas.Clientes WHERE id=?";
+            String query = "SELECT * FROM Clientes WHERE id=?";
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, id);
             ResultSet resultado = sentencia.executeQuery();
@@ -180,7 +180,7 @@ public class ClienteDAO {
         List<Cliente> lista = new ArrayList<>();
         try {
             Connection cnx = Conexion.conecta();
-            String query = "SELECT * FROM BDCamas.Clientes";
+            String query = "SELECT * FROM Clientes";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
             while (resultado.next()) {

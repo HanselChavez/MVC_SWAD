@@ -186,7 +186,16 @@ CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Empleados` (
     REFERENCES `dbcamasutra`.`EstadosEmpleado` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-    
+CREATE TABLE dbcamasutra.SessionesActivas (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    idEmpleado INT NOT NULL,
+    ip VARCHAR(45) NOT NULL,
+    token VARCHAR(255) NOT NULL,
+    usuarioModificador VARCHAR(100),
+    fechaCreacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    fechaModificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (idEmpleado) REFERENCES Empleados(id) ON DELETE CASCADE
+);
   CREATE TABLE IF NOT EXISTS `dbcamasutra`.`IntentosSession` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idEmpleado` int NOT NULL,

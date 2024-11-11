@@ -133,7 +133,7 @@ public class ProveedorDAO {
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
-            PreparedStatement sentencia = cnx.prepareStatement("SELECT * FROM BDCamas.Proveedores WHERE id=?");
+            PreparedStatement sentencia = cnx.prepareStatement("SELECT * FROM Proveedores WHERE id=?");
             sentencia.setString(1, id);
             System.out.println("Ejecutando consulta con ID: " + id);
             try (ResultSet resultado = sentencia.executeQuery()) {
@@ -173,7 +173,7 @@ public class ProveedorDAO {
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
-            String query = "SELECT * FROM BDCamas.Proveedores WHERE ruc=?";
+            String query = "SELECT * FROM Proveedores WHERE ruc=?";
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, ruc);
             ResultSet resultado = sentencia.executeQuery();
