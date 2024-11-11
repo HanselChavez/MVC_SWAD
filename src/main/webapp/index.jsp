@@ -38,6 +38,11 @@
                         <button style="all:unset;" onclick="toggleLogButton()">
                             <i class="fa-solid fa-user text-2xl text-white cursor-pointer hover:text-black transition-all duration-500"></i>
                         </button>
+<<<<<<< HEAD
+                        <div id="logbutton"  class="hidden absolute bg-white text-black right-0 top-12 w-40 flex flex-col">
+                            <a class=" transition-all text-center duration-500 w-full hover:text-white hover:bg-black
+                               py-2  font-semibold" href="/auth/login.jsp">Iniciar Sesion</a>
+=======
                         <div id="logbutton" class="hidden absolute bg-white text-black right-0 top-12 w-40 flex flex-col">
                             <%
                                 String userlog = (String) session.getAttribute("userlog");
@@ -67,6 +72,7 @@
                             <%
                                 }
                             %>
+>>>>>>> 144f8e3b63f1699c8eb9eada9359e93105320d3b
                         </div>
                     </div>
                 </div>
