@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import JWT.JWTUtils;
 
-@WebFilter(filterName = "SecurityFilter", urlPatterns = "/*")
+@WebFilter(filterName = "SecurityFilter", urlPatterns = "")
 public class SecurityFilter extends HttpFilter{
 
     private JWTUtils JWTtUt = new JWTUtils();

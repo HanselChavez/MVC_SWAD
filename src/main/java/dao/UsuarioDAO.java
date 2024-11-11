@@ -11,6 +11,7 @@ import model.EstadoEmpleado;
 import model.Rol;
 import model.Usuario;
 import org.mindrot.jbcrypt.BCrypt;
+
 import utilidades.Conexion;
 public class UsuarioDAO {
     public UsuarioDAO() {

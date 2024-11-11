@@ -18,7 +18,7 @@
     
     <dependencies>
 
-  <!-- JWT  -->
+        <!-- JWT  -->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -35,21 +35,15 @@
             <version>0.11.5</version>
             <scope>runtime</scope>
         </dependency>
-
-
-
-
-
-
-        <dependency>
-            <groupId>org.mindrot</groupId>
-            <artifactId>jbcrypt</artifactId>
-            <version>0.4</version>
-        </dependency>
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>8.0.33</version> <!-- Asegúrate de usar una versión actual -->
+        </dependency>
+        <dependency>
+            <groupId>de.svenkubiak</groupId>
+            <artifactId>jBCrypt</artifactId>
+            <version>0.4</version>
         </dependency>
         <dependency>
             <groupId>io.github.cdimascio</groupId>
