@@ -13,6 +13,8 @@
 <%@page import="model.Proveedor"%>
 <%@page import="model.Categoria"%>
 <%@page import="model.Producto, java.util.List, java.util.LinkedList" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Listado de Productos</title>        
@@ -41,7 +43,7 @@
 
 <h1 class="text-4xl font-bold text-black">Agregar Producto</h1>
 
-<form action="/Producto/add" enctype="multipart/form-data" method="post" class="text-black my-6 flex gap-y-4 md:gap-y-6 flex-col xs:flex-row flex-wrap w-full" id="productoForm">
+<form accept-charset="UTF-8" action="/Producto/add" enctype="multipart/form-data" method="post" class="text-black my-6 flex gap-y-4 md:gap-y-6 flex-col xs:flex-row flex-wrap w-full" id="productoForm">
     <div class="flex flex-col gap-y-4 md:gap-y-6 w-full md:w-2/4 md:pr-4">
         <div class="flex flex-col relative xs:flex-row gap-0.5 justify-between xs:items-center w-full">
             <label for="enombre" class="text-lg font-medium xs:w-2/4 sm:w-2/5 md:w-2/6">Nombre</label>
@@ -49,7 +51,7 @@
             <span class="text-xs top-8 font-semibold right-2 text-red-500 absolute hidden" id="nombreError">Este campo es obligatorio</span>
         </div>
         <div class="flex flex-col relative xs:flex-row gap-0.5 justify-between xs:items-center w-full">
-            <label for="edescrip" class="text-lg font-medium xs:w-2/4 sm:w-2/5 md:w-2/6">Descripción</label>
+            <label for="edescrip" class="text-lg font-medium xs:w-2/4 sm:w-2/5 md:w-2/6">DescripciÃ³n</label>
             <textarea  id="edescrip" name="descripcion" class="bg-transparent outline-none font-sans px-2 py-1 w-full border border-secondary-300 rounded-md" rows="3"></textarea>
             <span class="text-xs top-3/4 font-semibold right-2 text-red-500 absolute hidden" id="descripcionError">Este campo es obligatorio</span>
         </div>
@@ -71,7 +73,7 @@
 
     <div class="flex flex-col gap-y-4 md:gap-y-6 w-full md:w-2/4">
         <div class="flex flex-col xs:flex-row gap-0.5 justify-between xs:items-center w-full">
-            <label for="ecateg" class="text-lg font-medium xs:w-2/4 sm:w-2/5 md:w-2/6">Categoría</label>
+            <label for="ecateg" class="text-lg font-medium xs:w-2/4 sm:w-2/5 md:w-2/6">CategorÃ­a</label>
             <select name="categoria" id="ecateg" class="bg-transparent outline-none font-sans px-2 py-1 w-full border border-secondary-300 rounded-md">
                 <%
                     if (categorias != null) {
@@ -125,7 +127,7 @@
         </div>
 
         <div class="flex flex-col xs:flex-row gap-0.5 justify-between xs:items-center w-full mt-4">
-            <label for="imagenesSecundarias" class="text-lg font-medium">Imágenes Secundarias:</label>
+            <label for="imagenesSecundarias" class="text-lg font-medium">ImÃ¡genes Secundarias:</label>
             <input type="file" name="imagenesSecundarias" id="imagenesSecundarias" class="border border-secondary-300 rounded-md" multiple>
             <input type="hidden" name="imagenesSecundariasData" id="imagenesSecundariasData">
 
@@ -169,7 +171,7 @@
         const existingImages = Array.from(document.querySelectorAll('#secundariasContainer .imgSecu')).map(img => img.src);
         if (existingImages.length !== new Set(existingImages).size) {
             Toastify({
-                text: "Hay imágenes repetidas en las imágenes secundarias.",
+                text: "Hay imÃ¡genes repetidas en las imÃ¡genes secundarias.",
                 duration: 2000,
                 gravity: "top",
                 position: "right",
@@ -263,7 +265,7 @@
                 img.name = "imagenSecundaria";
                 img.classList.add("max-w-40", "imgSecu", "rounded-md", "object-cover");
 
-                // Añadir botón de eliminar
+                // AÃ±adir botÃ³n de eliminar
                 const removeButton = document.createElement("button");
                 removeButton.innerHTML = "&times;";
                 removeButton.classList.add("absolute", "top-1", "right-1", "bg-red-500", "text-white", "rounded-full", "w-5", "h-5", "flex", "items-center", "justify-center", "hover:bg-red-700");
@@ -297,7 +299,7 @@
             reader.readAsDataURL(file);
         }
 
-        secundariasInput.value = ''; // Resetea el input de imágenes secundarias
+        secundariasInput.value = ''; // Resetea el input de imÃ¡genes secundarias
         updateHiddenField();
     }
 
