@@ -46,7 +46,7 @@ public class SecurityFilter extends HttpFilter {
             if (!"".equals(dbtoken)) {
                 if (!dbtoken.equals(authorization)) {
                     sesion.invalidate();
-                    res.sendRedirect("/auth/error401.jsp");
+                    res.sendRedirect("/auth/session-invalid.jsp");
                     return;
                 }
             }
@@ -59,12 +59,12 @@ public class SecurityFilter extends HttpFilter {
                     return;
                 } else {
                     sesion.invalidate();
-                    res.sendRedirect("/auth/error401.jsp");
+                    res.sendRedirect("/auth/session-invalid.jsp");
                     return;
                 }
             }
 
-            res.sendRedirect("/auth/error401.jsp");
+            res.sendRedirect("/auth/session-invalid.jsp");
 
         } catch (NullPointerException e) {
             res.sendRedirect("/auth/error401.jsp");

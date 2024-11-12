@@ -213,7 +213,7 @@ CREATE TABLE dbcamasutra.SessionesActivas (
     REFERENCES `dbcamasutra`.`Empleados` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = InnoDB;
 
 CREATE TABLE IF NOT EXISTS `dbcamasutra`.`HistorialSesion` (
   `id` INT NOT NULL AUTO_INCREMENT,
