@@ -24,7 +24,7 @@
                     </svg>
                 </div>
                 <div class="max-w-24">
-                    <a class="max-w-12 max-h-full text-3xl font-semibold" href="/admin?pagina=dashboard">
+                    <a class="max-w-12 max-h-full text-3xl font-semibold" href="/transportista?pagina=dashboard">
                         Dayanara
                     </a>
                 </div>
@@ -60,7 +60,7 @@
                            w-full hover:bg-primario  rounded-r-3xl  hover:text-white py-2.5 pr-2 pl-4 
                            <% if (pagina == null || pagina.equals("dashboard")) { %> 
                            before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>" href="/admin?pagina=dashboard">
+                           <%}%>" href="/transportista?pagina=dashboard">
                             <i class="fa-solid fa-chart-line text-white"></i>
                             <span class="font-sans salto md:max-w-40 xl:max-w-full ">Dashboard</span>
                         </a>
@@ -69,105 +69,52 @@
                     <li class="pr-8 relative">
                         <a class="text-secondary-300 font-semibold transition-all duration-500 flex items-center gap-3 md:justify-start  
                            w-full hover:bg-primario rounded-r-3xl  hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("producto")) { %> 
+                           <% if (pagina != null && pagina.equals("clientes")) { %> 
                            before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
                            <%}%>"
-                           href="/admin?pagina=producto">
-                            <i class="fa-solid fa-boxes-stacked text-orange-500"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Productos</span>
+                           href="/transportista?pagina=clientes">
+                            <i class="fa-solid fa-users text-orange-500"></i>
+                            <span class="font-sans salto md:max-w-40 xl:max-w-full">Clientes</span>
                         </a>
                     </li>
                     <li class="pr-8 relative">
                         <a class="text-secondary-300 font-semibold transition-all duration-500 flex items-center gap-3 md:justify-start 
                            w-full hover:bg-primario rounded-r-3xl hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("usuario")) { %> 
+                           <% if (pagina != null && pagina.equals("envios")) { %> 
                            before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>" href="/admin?pagina=usuario">
-                            <i class="fa-solid fa-users-gear text-contrast-600"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Usuarios</span>
+                           <%}%>" href="/transportista?pagina=envios">
+                            <i class="fa-solid fa-truck-fast text-contrast-600"></i>
+                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Envios</span>
                         </a>
                     </li>
                     <li class="pr-8 relative">
                         <a class="text-secondary-300 font-semibold transition-all duration-500 flex items-center gap-3 md:justify-start 
                            w-full hover:bg-primario  rounded-r-3xl  hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("transporte")) { %> 
+                           <% if (pagina != null && pagina.equals("reportes")) { %> 
                            before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>" href="/admin?pagina=transporte">
-                            <i class="fa-solid fa-truck-ramp-box text-cyan-500"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Transporte</span>
+                           <%}%>" href="/transportista?pagina=reportes">
+                            <i class="fa-solid fa-file text-cyan-500"></i>
+                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Reportes</span>
                         </a>
                     </li>
                     <li class="pr-8 relative">
                         <a class="text-secondary-300 font-semibold transition-all duration-500 flex items-center gap-3 md:justify-start 
                            w-full hover:bg-primario rounded-r-3xl hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("categoria")) { %> 
+                           <% if (pagina != null && pagina.equals("rutas")) { %> 
                            before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>" href="/admin?pagina=categoria">
-                            <i class="fa-solid fa-tags text-amber-500"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Categorias</span>
+                           <%}%>" href="/transportista?pagina=rutas">
+                            <i class="fa-solid fa-route text-amber-500"></i>
+                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Rutas</span>
                         </a>
                     </li>    
                     <li class="pr-8 relative">
                         <a class="text-secondary-300 font-semibold transition-all duration-500 flex  items-center  gap-3 md:justify-start  w-full 
                            hover:bg-primario rounded-r-3xl  hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("almacen")) { %> 
+                           <% if (pagina != null && pagina.equals("trasnporte")) { %> 
                            before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>" href="/admin?pagina=almacen">                      
-                            <i class="fa-solid fa-warehouse text-blue-500"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Almacen</span>
-                        </a>
-                    </li>
-                    <li class="pr-8 relative">
-                        <a class="text-secondary-300 font-semibold transition-all duration-500 flex  items-center  gap-3 md:justify-start  w-full 
-                           hover:bg-primario rounded-r-3xl  hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("venta")) { %> 
-                           before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>"
-                           href="/admin?pagina=venta">
-                            <i class="fa-solid fa-cash-register text-emerald-500"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Ventas</span>
-                        </a>
-                    </li>
-                    <li class="pr-8 relative">
-                        <a class="text-secondary-300 font-semibold transition-all duration-500 flex items-center  gap-3 md:justify-start w-full 
-                           hover:bg-primario rounded-r-3xl  hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("compra")) { %> 
-                           before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>"
-                           href="/admin?pagina=compra">
-                            <i class="fa-solid fa-cart-shopping text-red-500"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Compras</span>
-                        </a>
-                    </li>
-                    <li class="pr-8 relative">
-                        <a class="text-secondary-300 font-semibold transition-all duration-500 flex  items-center  gap-3 md:justify-start  w-full 
-                           hover:bg-primario rounded-r-3xl  hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("envio")) { %> 
-                           before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>"
-                           href="/admin?pagina=envio">
-                            <i class="fa-solid fa-truck-fast text-indigo-500"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Envios</span>
-                        </a>
-                    </li>
-                    <li class="pr-8 relative">
-                        <a class="text-secondary-300 font-semibold transition-all duration-500 flex  items-center  gap-3 md:justify-start  
-                           w-full hover:bg-primario rounded-r-3xl  hover:text-white py-2.5 pr-2 pl-4
-                           <% if (pagina != null && pagina.equals("proveedor")) { %> 
-                           before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>" href="/admin?pagina=proveedor">
-                            <i class="fa-solid fa-truck-field text-red-400"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Proveedores</span>
-                        </a>
-                    </li>                    
-                    <li class="pr-8 relative">
-                        <a class="text-secondary-300 font-semibold transition-all duration-500 flex items-center gap-3 md:justify-start 
-                           w-full hover:bg-primario rounded-r-3xl hover:text-white py-2.5 pr-2 pl-4 
-                           <% if (pagina != null && pagina.equals("cliente")) { %> 
-                           before:absolute before:w-1 before:content-[''] bg-primario before:h-full before:inline-block before:left-0 before:top-0 before:bg-secundario-500 text-white bg-primary-900 
-                           <%}%>" href="/admin?pagina=cliente">
-                            <i class="fa-solid fa-users text-yellow-500"></i>
-                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Clientes</span>
+                           <%}%>" href="/transportista?pagina=trasnporte">                      
+                            <i class="fa-solid fa-truck-field text-blue-500"></i>
+                            <span class="font-sans salto md:max-w-40 xl:max-w-full ">Transporte</span>
                         </a>
                     </li>
                 </ul>

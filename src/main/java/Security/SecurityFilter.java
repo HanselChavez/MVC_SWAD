@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import JWT.JWTUtils;
 
-@WebFilter(filterName = "SecurityFilter", urlPatterns = "/*")
-public class SecurityFilter extends HttpFilter{
+@WebFilter(filterName = "SecurityFilter", urlPatterns = "")
+public class SecurityFilter extends HttpFilter {
 
     private JWTUtils JWTtUt = new JWTUtils();
 
@@ -20,26 +20,26 @@ public class SecurityFilter extends HttpFilter{
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws IOException, ServletException {
 
-                String requestURI = req.getRequestURI();
-           // Allow access to the specified URL without authentication
-           if (requestURI.equals("/SWAD_Camas/auth/")) {
+        /*String requestURI = req.getRequestURI();
+        // Allow access to the specified URL without authentication
+        if (requestURI.equals("/SWAD_Camas/auth/")) {
             chain.doFilter(req, res);
             return;
         }
 
-String authorization = req.getHeader("Authorization");
+        String authorization = req.getHeader("Authorization");
 
-if (authorization != null && authorization.startsWith("Bearer ")) {
-    String token = authorization.substring(7).trim();
+        if (authorization != null && authorization.startsWith("Bearer ")) {
+            String token = authorization.substring(7).trim();
 
-    if (JWTtUt.validateToken(token)) {
-        chain.doFilter(req, res);
-        return;
-    } else {
-        res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token inválido o expirado");
-        return;
+            if (JWTtUt.validateToken(token)) {
+                chain.doFilter(req, res);
+                return;
+            } else {
+                res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token inválido o expirado");
+                return;
+            }
+        }
+        res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Falta token de autenticación");*/
     }
-}
-res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Falta token de autenticación");
-}
 }

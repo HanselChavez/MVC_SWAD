@@ -26,8 +26,8 @@ public class Conexion {
             String psw = "root";
                         String url = "jdbc:mysql://localhost:33066/BDCamas";*/
             String usr = "root";
-            String psw = "admin";
-            String url = "jdbc:mysql://localhost:3309/BDCamas";
+            String psw = "977966335";
+            String url = "jdbc:mysql://localhost:3307/BDCamas";
             Class.forName("com.mysql.cj.jdbc.Driver");
             cnx = DriverManager.getConnection(url, usr, psw);
         } catch (SQLException e) {

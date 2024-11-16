@@ -14,7 +14,7 @@
                 color: #FF2323;
             }
         </style>
-        <!-- <script src="https://www.google.com/recaptcha/api.js" async defer></script> comment -->
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
         <script>
             document.addEventListener("DOMContentLoaded", function () {
