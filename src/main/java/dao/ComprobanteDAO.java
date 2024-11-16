@@ -23,9 +23,9 @@ public class ComprobanteDAO {
                     + "    tc.nombre AS tp_nombre,\n"
                     + "    tc.descripcion AS tp_descripcion\n"
                     + "FROM \n"
-                    + "    BDCamas.Comprobante c\n"
+                    + "    Comprobante c\n"
                     + "JOIN \n"
-                    + "    BDCamas.TipoComprobante tc ON c.idTipoComprobante = tc.id\n"
+                    + "    TipoComprobante tc ON c.idTipoComprobante = tc.id\n"
                     + "WHERE \n"
                     + "    c.id = ?; ";
             PreparedStatement sentencia = cnx.prepareStatement(query);

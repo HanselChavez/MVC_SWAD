@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import JWT.JWTUtils;
+import dao.UsuarioDAO;
+import javax.servlet.http.HttpSession;
 
-@WebFilter(filterName = "SecurityFilter", urlPatterns = "")
+@WebFilter(filterName = "SecurityFilter", urlPatterns = {"/admin", "/vendedor", "/transportista"})
 public class SecurityFilter extends HttpFilter {
 
     private JWTUtils JWTtUt = new JWTUtils();
@@ -20,26 +22,52 @@ public class SecurityFilter extends HttpFilter {
     protected void doFilter(HttpServletRequest req, HttpServletResponse res, FilterChain chain)
             throws IOException, ServletException {
 
-        /*String requestURI = req.getRequestURI();
-        // Allow access to the specified URL without authentication
-        if (requestURI.equals("/SWAD_Camas/auth/")) {
+        HttpSession sesion = req.getSession();
+        String requestURI = req.getRequestURI();
+
+        if (requestURI.equals("/auth/login")) {
             chain.doFilter(req, res);
             return;
         }
 
-        String authorization = req.getHeader("Authorization");
+        try {
+            String authorization = sesion.getAttribute("Authorization").toString();
+            String idUser = sesion.getAttribute("idUsuario").toString();
 
-        if (authorization != null && authorization.startsWith("Bearer ")) {
-            String token = authorization.substring(7).trim();
-
-            if (JWTtUt.validateToken(token)) {
-                chain.doFilter(req, res);
-                return;
-            } else {
-                res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Token inválido o expirado");
+            if (authorization == null || idUser == null) {
+                res.sendRedirect("/auth/error401.jsp");
                 return;
             }
+
+            String dbtoken = new UsuarioDAO().getSession(idUser);
+            System.out.println("AUTHORIZATION: " + authorization);
+            System.out.println("DBTOKEN: " + dbtoken);
+
+            if (!"".equals(dbtoken)) {
+                if (!dbtoken.equals(authorization)) {
+                    sesion.invalidate();
+                    res.sendRedirect("/auth/session-invalid.jsp");
+                    return;
+                }
+            }
+
+            if (authorization.startsWith("Bearer ")) {
+                String token = authorization.substring(7).trim();
+
+                if (JWTtUt.validateToken(token)) {
+                    chain.doFilter(req, res);
+                    return;
+                } else {
+                    sesion.invalidate();
+                    res.sendRedirect("/auth/session-invalid.jsp");
+                    return;
+                }
+            }
+
+            res.sendRedirect("/auth/session-invalid.jsp");
+
+        } catch (NullPointerException e) {
+            res.sendRedirect("/auth/error401.jsp");
         }
-        res.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Falta token de autenticación");*/
     }
 }

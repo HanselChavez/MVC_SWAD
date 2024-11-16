@@ -15,7 +15,7 @@ public class TransporteDAO {
         try {
             Conexion c = new Conexion();
             Connection cnx = c.conecta();
-            String query = "SELECT * FROM BDCamas.Transporte";
+            String query = "SELECT * FROM Transporte";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
             while (resultado.next()) {

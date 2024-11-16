@@ -32,8 +32,8 @@ public class StockDAO {
                     + "  p.img,\n"
                     + "  p.idEstado,\n"
                     + "  p.idProveedor\n"
-                    + "FROM BDCamas.Stock s\n"
-                    + "JOIN BDCamas.Productos p ON s.idProducto = p.id;";
+                    + "FROM Stock s\n"
+                    + "JOIN Productos p ON s.idProducto = p.id;";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
             while (resultado.next()) {

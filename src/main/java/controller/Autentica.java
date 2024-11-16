@@ -1,4 +1,5 @@
 package controller;
+
 import dao.ClienteDAO;
 import dao.UsuarioDAO;
 import java.io.OutputStream;
@@ -17,9 +18,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import JWT.JWTUtils;
+import javax.servlet.http.Cookie;
 import model.Usuario;
+
 @WebServlet(name = "Auth", urlPatterns = {"/auth", "/auth/"})
 public class Autentica extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -37,6 +41,7 @@ public class Autentica extends HttpServlet {
                 break;
         }
     }
+
     public void registrar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String dni = request.getParameter("dni");
         String nombres = request.getParameter("nombre");
@@ -67,6 +72,7 @@ public class Autentica extends HttpServlet {
             request.getRequestDispatcher("/auth/register.jsp").forward(request, response);
         }
     }
+
     private void guardarDatosEnRequest(HttpServletRequest request, String dni, String nombres, String apellidos, String correo, String telefono) {
         request.setAttribute("dni", dni);
         request.setAttribute("nombre", nombres);
@@ -74,6 +80,7 @@ public class Autentica extends HttpServlet {
         request.setAttribute("email", correo);
         request.setAttribute("telefono", telefono);
     }
+
     public CompletableFuture<String> obtenerIpPublicaAsync() {
         return CompletableFuture.supplyAsync(() -> {
             StringBuilder result = new StringBuilder();
@@ -93,6 +100,7 @@ public class Autentica extends HttpServlet {
             return result.toString();
         });
     }
+
     public void validar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String correo = request.getParameter("correo");
@@ -100,27 +108,35 @@ public class Autentica extends HttpServlet {
         String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
         String ipCliente = obtenerIpPublicaAsync().join();
         System.out.println("IPCLIENTE:  " + ipCliente);
-        HttpSession sesion = request.getSession();
+
         if (!validateRecaptcha(gRecaptchaResponse)) {
             request.setAttribute("error", "Captcha no válido. Intenta nuevamente.");
             request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
             return;
         }
+
         Usuario cli = new UsuarioDAO().authenticate(correo, password, ipCliente);
         if (cli != null && cli.getRol().getId() >= 0) { // Usuario autenticado
 
+            String token = JWTUtils.generateToken(correo);
+            System.out.println(token);
 
-             String token = JWTUtils.generateToken(correo);
-                        System.out.println(token);
-                        
+            response.setHeader("Authorization", "Bearer " + token);
+            if (getRedirectUrl(cli) != "/") {
+                new UsuarioDAO().saveSession(cli.getId(), "Bearer " + token, ipCliente);
+            }
+            HttpSession sesion = request.getSession();
+            sesion.setAttribute("Authorization", "Bearer " + token);
             sesion.setAttribute("userlog", cli.getRol().getId().toString());
             sesion.setAttribute("idUsuario", cli.getId());
             response.sendRedirect(getRedirectUrl(cli));
+
         } else {
             request.setAttribute("error", getErrorMessage(cli));
             request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
         }
     }
+
     private String getRedirectUrl(Usuario cli) {
         switch (cli.getRol().getId().toString()) {
             case "1":
@@ -130,9 +146,10 @@ public class Autentica extends HttpServlet {
             case "3":
                 return "/transportista?pagina=dashboard";
             default:
-                return "/"; // Redirigir a la página principal
+                return "/";
         }
     }
+
     private String getErrorMessage(Usuario cli) {
         if (cli == null || cli.getRol().getId() < 0) {
             return "Credenciales incorrectas.";
@@ -147,13 +164,17 @@ public class Autentica extends HttpServlet {
                 return "Error desconocido.";
         }
     }
+
     public void cerrar(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         session.setAttribute("userlog", null);
+        session.setAttribute("Authorization", null);
+        session.setAttribute("idUsuario", null);
         session.invalidate();
         response.sendRedirect("/");
     }
+
     private boolean validateRecaptcha(String gRecaptchaResponse) throws IOException {
         String secretKey = "6Lege1QqAAAAACPiinSHE4qRGw4ASdfz1NCta6Bb"; // Reemplaza con tu clave secreta
         String url = "https://www.google.com/recaptcha/api/siteverify";
@@ -170,6 +191,7 @@ public class Autentica extends HttpServlet {
             return responseBody.contains("\"success\": true");
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

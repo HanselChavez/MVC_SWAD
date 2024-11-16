@@ -12,9 +12,60 @@ import model.Rol;
 import model.Usuario;
 import org.mindrot.jbcrypt.BCrypt;
 import utilidades.Conexion;
+
+
 public class UsuarioDAO {
+
     public UsuarioDAO() {
     }
+
+    public void saveSession(Long id, String token, String ipCliente) {
+        try (Connection cnx = Conexion.conecta()) {
+            String querySelect = "SELECT token FROM SessionesActivas WHERE idEmpleado = ? ";
+
+            PreparedStatement selectStmt = cnx.prepareStatement(querySelect);
+            selectStmt.setLong(1, id);
+            ResultSet rsSelectExistente = selectStmt.executeQuery();
+            if (rsSelectExistente.next()) {
+                String updateIntentos = "UPDATE SessionesActivas SET token=? , ip=? where idEmpleado = ?" ;
+                PreparedStatement sentenciaUpdate = cnx.prepareStatement(updateIntentos);
+                sentenciaUpdate.setString(1, token);
+                sentenciaUpdate.setString(2, ipCliente);
+                sentenciaUpdate.setLong(3, id);
+                sentenciaUpdate.executeUpdate();
+            } else {
+                String updateIntentos = "INSERT INTO SessionesActivas (idEmpleado, ip, token,usuarioModificador) "
+                        + "VALUES (?,?,?,?) ";
+                PreparedStatement sentenciaUpdate = cnx.prepareStatement(updateIntentos);
+                sentenciaUpdate.setLong(1, id);
+                sentenciaUpdate.setString(2, ipCliente);
+                sentenciaUpdate.setString(3, token);
+                sentenciaUpdate.setLong(4, id);
+                sentenciaUpdate.executeUpdate();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en saveSession: " + e.getMessage());
+        }
+    }
+
+    public String getSession(String id) {
+        try (Connection cnx = Conexion.conecta()) {
+            String querySelect = "SELECT token FROM SessionesActivas WHERE idEmpleado = ? ";
+
+            PreparedStatement selectStmt = cnx.prepareStatement(querySelect);
+            selectStmt.setString(1, id);
+            ResultSet rsSelectExistente = selectStmt.executeQuery();
+            if (rsSelectExistente.next()) {
+                return rsSelectExistente.getString("token");
+            }
+            return "";
+
+        } catch (SQLException e) {
+            System.out.println("Error en getSession: " + e.getMessage());
+        }
+        return "";
+    }
+
     public Usuario authenticate(String email, String psw, String ipCliente) {
         Usuario logueado = new Usuario();
         Rol rolN = new Rol();
@@ -31,9 +82,9 @@ public class UsuarioDAO {
             return logueado;
         }
         try (Connection cnx = Conexion.conecta()) {
-            String querySelect = "SELECT 'Clientes' AS tabla, id, correo, contra FROM BDCamas.Clientes WHERE correo = ? "
+            String querySelect = "SELECT 'Clientes' AS tabla, id, correo, contra FROM Clientes WHERE correo = ? "
                     + "UNION "
-                    + "SELECT 'Empleados' AS tabla, id, correo, contra FROM BDCamas.Empleados WHERE correo = ?;";
+                    + "SELECT 'Empleados' AS tabla, id, correo, contra FROM Empleados WHERE correo = ?;";
             PreparedStatement selectStmt = cnx.prepareStatement(querySelect);
             selectStmt.setString(1, email);
             selectStmt.setString(2, email);
@@ -84,11 +135,13 @@ public class UsuarioDAO {
                 }
             }
             logueado.setRol(rolN);
+            logueado.setId(idUsuario);
         } catch (SQLException e) {
             System.out.println("Error en authenticate: " + e.getMessage());
         }
         return logueado;
     }
+
     private boolean checkIntentosFallidos(Connection cnx, long idEmpleado) throws SQLException {
         String queryIntentos = "SELECT cantidad FROM IntentosSession WHERE idEmpleado = ? AND fecha = CURDATE() AND hora >= DATE_SUB(NOW(), INTERVAL 1 HOUR)";
         PreparedStatement sentenciaIntentos = cnx.prepareStatement(queryIntentos);
@@ -100,6 +153,7 @@ public class UsuarioDAO {
         }
         return intentos < 3; // Devuelve true si hay menos de 3 intentos
     }
+
     private void registerSesion(Connection cnx, long idEmpleado, String ipCliente) throws SQLException {
         String insertSession = "INSERT INTO HistorialSesion (idEmpleado, ip, usuarioCreador, usuarioModificador) VALUES (?, ?, ?, ?)";
         PreparedStatement sentenciaSession = cnx.prepareStatement(insertSession);
@@ -109,12 +163,14 @@ public class UsuarioDAO {
         sentenciaSession.setLong(4, idEmpleado);
         sentenciaSession.executeUpdate();
     }
+
     private void resetIntentos(Connection cnx, long idEmpleado) throws SQLException {
         String resetIntentos = "DELETE FROM IntentosSession WHERE idEmpleado = ? AND fecha = CURDATE()";
         PreparedStatement sentenciaReset = cnx.prepareStatement(resetIntentos);
         sentenciaReset.setLong(1, idEmpleado);
         sentenciaReset.executeUpdate();
     }
+
     private void incrementIntentos(Connection cnx, long idEmpleado, String ipCliente) throws SQLException {
         String updateIntentos = "INSERT INTO IntentosSession (idEmpleado, ip, cantidad, fecha, hora, usuarioModificador) "
                 + "VALUES (?, ?, 1, CURDATE(), NOW(), ?) "
@@ -125,6 +181,7 @@ public class UsuarioDAO {
         sentenciaUpdate.setLong(3, idEmpleado);
         sentenciaUpdate.executeUpdate();
     }
+
     public int createUser(String dni, String nombres, String correo, String contra,
             String apePaterno, String apeMaterno, String telefono, int idRol,
             int usuCreador) {
@@ -234,6 +291,7 @@ public class UsuarioDAO {
         }
         return filasInsertadas;
     }
+
     public int editUser(int id, String dni, String nombres, String correo, String contra,
             String apePaterno, String apeMaterno, String telefono, int idRol, int idEstado) {
         if (dni == null || dni.trim().isEmpty() || dni.length() != 8) {
@@ -307,6 +365,7 @@ public class UsuarioDAO {
             return 0;
         }
     }
+
     public int deleteUser(String id) {
         try {
             Conexion c = new Conexion();
@@ -323,6 +382,7 @@ public class UsuarioDAO {
             return 0;
         }
     }
+
     public Usuario getUserByDni(String dni) {
         Usuario usr = new Usuario();
         if (dni.length() != 8 || !dni.matches("\\d{8}")) {
@@ -346,9 +406,9 @@ public class UsuarioDAO {
                     + "  es.id AS estado_id,\n"
                     + "  es.nombre AS estado_nombre,\n"
                     + "  es.descripcion AS estado_descripcion\n"
-                    + "FROM BDCamas.Empleados e\n"
-                    + "JOIN BDCamas.Roles r ON e.idRol = r.id\n"
-                    + "JOIN BDCamas.EstadosEmpleado es ON e.idEstado = es.id where e.dni = ?";
+                    + "FROM Empleados e\n"
+                    + "JOIN Roles r ON e.idRol = r.id\n"
+                    + "JOIN EstadosEmpleado es ON e.idEstado = es.id where e.dni = ?";
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, dni);
             ResultSet resultado = sentencia.executeQuery();
@@ -380,6 +440,7 @@ public class UsuarioDAO {
         }
         return usr;
     }
+
     public Usuario getUserById(String id) {
         Usuario usr = new Usuario();
         try {
@@ -399,9 +460,9 @@ public class UsuarioDAO {
                     + "  es.id AS estado_id,\n"
                     + "  es.nombre AS estado_nombre,\n"
                     + "  es.descripcion AS estado_descripcion\n"
-                    + "FROM BDCamas.Empleados e\n"
-                    + "JOIN BDCamas.Roles r ON e.idRol = r.id\n"
-                    + "JOIN BDCamas.EstadosEmpleado es ON e.idEstado = es.id where e.id = ?";
+                    + "FROM Empleados e\n"
+                    + "JOIN Roles r ON e.idRol = r.id\n"
+                    + "JOIN EstadosEmpleado es ON e.idEstado = es.id where e.id = ?";
             PreparedStatement sentencia = cnx.prepareStatement(query);
             sentencia.setString(1, id);
             ResultSet resultado = sentencia.executeQuery();
@@ -433,6 +494,7 @@ public class UsuarioDAO {
         }
         return usr;
     }
+
     public List<Usuario> getUsers() {
         List<Usuario> lista = new ArrayList<>();
         try {
@@ -452,9 +514,9 @@ public class UsuarioDAO {
                     + "  es.id AS estado_id,\n"
                     + "  es.nombre AS estado_nombre,\n"
                     + "  es.descripcion AS estado_descripcion\n"
-                    + "FROM BDCamas.Empleados e\n"
-                    + "JOIN BDCamas.Roles r ON e.idRol = r.id\n"
-                    + "JOIN BDCamas.EstadosEmpleado es ON e.idEstado = es.id";
+                    + "FROM Empleados e\n"
+                    + "JOIN Roles r ON e.idRol = r.id\n"
+                    + "JOIN EstadosEmpleado es ON e.idEstado = es.id";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
             while (resultado.next()) {

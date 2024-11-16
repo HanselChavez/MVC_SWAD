@@ -20,7 +20,7 @@ public class HistorialSesionDAO {
                     + "  id,\n"
                     + "  idEmpleado,\n"
                     + "  ip \n"
-                    + " FROM BDCamas.HistorialSesion";
+                    + " FROM HistorialSesion";
             Statement sentencia = cnx.createStatement();
             ResultSet resultado = sentencia.executeQuery(query);
             while (resultado.next()) {
