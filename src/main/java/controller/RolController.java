@@ -1,14 +1,11 @@
 package controller;
 import dao.RolDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Date;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Rol;
 @WebServlet(name = "Rols", urlPatterns = {"/Rols", "/Rols/add", "/Rols/edit", "/Rols/delete"})
 public class RolController extends HttpServlet {
     @Override

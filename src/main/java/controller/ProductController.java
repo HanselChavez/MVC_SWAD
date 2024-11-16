@@ -1,7 +1,6 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.core.type.TypeReference;
 import dao.ProductoDAO;
 import java.io.File;
 import java.io.IOException;
@@ -252,7 +251,6 @@ public class ProductController extends HttpServlet {
         double preciocompra = Double.parseDouble(request.getParameter("pcompra"));
         double precioventa = Double.parseDouble(request.getParameter("pventa"));
         //  String imagen = request.getParameter("imagen");
-        String imagen = "";
         System.out.println("***************AQUI ANTES DE EDITAR***************");
         ProductoDAO prod = new ProductoDAO();
 

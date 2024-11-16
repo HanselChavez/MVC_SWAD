@@ -173,8 +173,7 @@ public class UsuarioDAO {
 
     private void incrementIntentos(Connection cnx, long idEmpleado, String ipCliente) throws SQLException {
         String updateIntentos = "INSERT INTO IntentosSession (idEmpleado, ip, cantidad, fecha, hora, usuarioModificador) "
-                + "VALUES (?, ?, 1, CURDATE(), NOW(), ?) "
-                + "ON DUPLICATE KEY UPDATE cantidad = cantidad + 1, ip = VALUES(ip), fecha = CURDATE(), hora = NOW()";
+                + "VALUES (?, ?, 1, CURDATE(), NOW(), ?) ON DUPLICATE KEY UPDATE cantidad = cantidad + 1, ip = VALUES(ip), fecha = CURDATE(), hora = NOW()";
         PreparedStatement sentenciaUpdate = cnx.prepareStatement(updateIntentos);
         sentenciaUpdate.setLong(1, idEmpleado);
         sentenciaUpdate.setString(2, ipCliente);
