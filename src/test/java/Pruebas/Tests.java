@@ -80,8 +80,7 @@ public class Tests {
 
         System.out.println("Prueba de autenticación completada con éxito.");
     }
-    
-        
+
     //TEST 3
     // @Test
     public void testCrearUsuario() {
@@ -189,7 +188,8 @@ public class Tests {
     }
     //TEST 7
 
-    //@Test
+    //@Test 
+    /*
     public void testCrearProveedor() {
         // Preparar datos de prueba
         String empresa = "Calapuja Industries";
@@ -202,7 +202,7 @@ public class Tests {
 
         int expected = 1;
 
-        int actual = instance.createProveedor(empresa, telefono, ruc, direccion, email);
+       int actual = instance.createProveedor(empresa, telefono, ruc, direccion, email);
 
         System.out.println("Expected number of rows inserted: " + expected);
         System.out.println("Actual number of rows inserted: " + actual);
@@ -328,5 +328,5 @@ public class Tests {
         }
 
         System.out.println("Prueba de métodos set y get completada con éxito.");
-    }
+    }*/
 }

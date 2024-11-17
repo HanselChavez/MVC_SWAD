@@ -34,7 +34,7 @@ public class Conexion {
             String usr = "root";
 
             String psw = "977966335";
-            String url = "jdbc:mysql://localhost:3307/BDCamas";
+            String url = "jdbc:mysql://localhost:3307/bdcamas";
             Class.forName("com.mysql.cj.jdbc.Driver");
             cnx = DriverManager.getConnection(url, usr, psw);
         } catch (SQLException e) {

@@ -10,12 +10,6 @@
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
 
 </head>
-<%
-    ClienteDAO C = new ClienteDAO();
-    List<Cliente> lista = new LinkedList<>();
-    lista = C.getClientes();
-%>
-
 
 <h1 class="text-black text-4xl font-bold">Agregar Cliente</h1>
 

@@ -1,4 +1,5 @@
 package controller;
+
 import dao.ClienteDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 @WebServlet(name = "Cliente", urlPatterns = {"/Cliente", "/Cliente/add", "/Cliente/edit", "/Cliente/delete"})
 public class ClienteController extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,6 +30,7 @@ public class ClienteController extends HttpServlet {
                 break;
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,6 +50,7 @@ public class ClienteController extends HttpServlet {
                 break;
         }
     }
+
     private void handleAddCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String nombre = request.getParameter("nombre");
@@ -57,10 +62,19 @@ public class ClienteController extends HttpServlet {
         String correo = request.getParameter("correo");
         System.out.println("***************AQUI ANTES DE CREAR***************");
         ClienteDAO cl = new ClienteDAO();
-        cl.createCliente(dni, nombre, correo, contra, apellPaterno, apellMaterno, telf, 1);
+        cl.createCliente(dni, nombre, correo, "Abcd1234$", apellPaterno, apellMaterno, telf, 1);
+        System.out.println("DNI: " + dni
+                + " NOMBRE: " + nombre
+                + " CORREO: " + correo
+                + " CONTRASEÑA: " + contra
+                + " APELLIDO PATERNO: " + apellPaterno
+                + " APELLIDO MATERNO: " + apellMaterno
+                + " TELÉFONO: " + telf
+                + " OTRO DATO: " + 1);
         System.out.println("***************DESPUES DE CREAR***************");
         response.sendRedirect("/admin?pagina=cliente");
     }
+
     private void handleDeleteCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
@@ -70,6 +84,7 @@ public class ClienteController extends HttpServlet {
         System.out.println("***************DESPUES DE ELIMINAR***************");
         response.sendRedirect("/admin?pagina=cliente");
     }
+
     private void handleEditCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
@@ -82,7 +97,7 @@ public class ClienteController extends HttpServlet {
         String contra = request.getParameter("contra");
         System.out.println("***************AQUI ANTES DE EDITAR***************");
         ClienteDAO cl = new ClienteDAO();
-        cl.editCliente(id, nombre, apellPaterno, apellMaterno, telf, direc, dni,contra);
+        cl.editCliente(id, nombre, apellPaterno, apellMaterno, telf, direc, dni, contra);
         System.out.println("***************DESPUES DE EDITAR***************");
         response.sendRedirect("/admin?pagina=cliente");
     }
