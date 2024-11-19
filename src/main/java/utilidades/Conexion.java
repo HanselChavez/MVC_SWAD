@@ -31,10 +31,9 @@ public class Conexion {
              * String psw = "root";
              * String url = "jdbc:mysql://localhost:33066/BDCamas";
              */
-            String usr = "root";
-
-            String psw = "977966335";
-            String url = "jdbc:mysql://localhost:3307/BDCamas";
+            String usr = "admincamas";
+            String psw = "Carlos3231234$";
+            String url = "jdbc:mysql://serverdayanara.mysql.database.azure.com:3306/BDCamas";
             Class.forName("com.mysql.cj.jdbc.Driver");
             cnx = DriverManager.getConnection(url, usr, psw);
         } catch (SQLException e) {
