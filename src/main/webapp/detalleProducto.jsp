@@ -167,7 +167,7 @@
 
                     </div>
 
-                    <!-- Right Section: Product Info -->
+                    <!-- Trae producto en la vista producto -->
                     <div class="flex-1">
                         <div class="text-sm mb-4">
                             <a href="/productos" class=" text-black hover:text-blue-600 transition-all duration-500 easy-in-out">Productos</a> 

@@ -1,4 +1,5 @@
 package controller;
+
 import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -7,8 +8,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 @WebServlet(name = "/admin", urlPatterns = {"/admin", "/admin/"})
 public class AdminController extends HttpServlet {
+
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String pagina = request.getParameter("pagina");
@@ -23,6 +26,15 @@ public class AdminController extends HttpServlet {
                         break;
                     case "usuario":
                         view = "user/list.jsp";
+                        if (accion != null && accion.equals("add")) {
+                            view = "user/add.jsp";
+                        } else if (accion != null && accion.equals("delete")) {
+                            view = "user/delete.jsp";
+                        } else if (accion != null && accion.equals("details")) {
+                            view = "user/details.jsp";
+                        } else if (accion != null && accion.equals("edit")) {
+                            view = "user/edit.jsp";
+                        }
                         break;
                     case "rol":
                         view = "rol/list.jsp";
@@ -47,6 +59,15 @@ public class AdminController extends HttpServlet {
                         break;
                     case "proveedor":
                         view = "proveedor/list.jsp";
+                        if (accion != null && accion.equals("add")) {
+                            view = "proveedor/add.jsp";
+                        } else if (accion != null && accion.equals("delete")) {
+                            view = "proveedor/delete.jsp";
+                        } else if (accion != null && accion.equals("details")) {
+                            view = "proveedor/details.jsp";
+                        } else if (accion != null && accion.equals("edit")) {
+                            view = "proveedor/edit.jsp";
+                        }
                         break;
                     case "transporte":
                         view = "transporte/list.jsp";
@@ -97,7 +118,7 @@ public class AdminController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
             dispatcher.forward(request, response); // Forward to the specific view
         } else {
-            response.sendRedirect("../auth/error401.jsp");
+        response.sendRedirect("../auth/error401.jsp");
         }
     }
 }

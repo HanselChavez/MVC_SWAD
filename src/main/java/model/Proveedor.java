@@ -3,21 +3,29 @@ package model;
 public class Proveedor {
 
     private Long id;
-
     private String empresa;
-
     private String telefono;
-
     private String ruc;
-
     private String direccion;
-
     private String correo;
+    private ContactoInicial contactoInicial;
 
+    // Constructor por defecto
     public Proveedor() {
     }
 
-   
+    // Constructor con todos los atributos
+    public Proveedor(Long id, String empresa, String telefono, String ruc, String direccion, String correo,Long idContacto, String contactoNombre, String contactoTelefono) {
+        this.id = id;
+        this.empresa = empresa;
+        this.telefono = telefono;
+        this.ruc = ruc;
+        this.direccion = direccion;
+        this.correo = correo;
+        this.contactoInicial = new ContactoInicial(idContacto,contactoNombre, contactoTelefono);
+    }
+
+    // Getters y Setters
     public Long getId() {
         return id;
     }
@@ -66,4 +74,13 @@ public class Proveedor {
         this.direccion = direccion;
     }
 
+    public ContactoInicial getContactoInicial() {
+        return contactoInicial;
+    }
+
+    public void setContactoInicial(ContactoInicial contactoInicial) {
+        this.contactoInicial = contactoInicial;
+    }
+
+    // Clase interna para representar el contacto inicial
 }

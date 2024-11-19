@@ -5,7 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import io.github.cdimascio.dotenv.Dotenv;
 
 /**
  *
@@ -17,23 +16,10 @@ public class Conexion {
 
     public static Connection conecta() {
         try {
-            /*
-             * Dotenv dotenv = Dotenv.configure()
-             * .directory("/")
-             * .load();
-             */
-            /*
-             * String usr = dotenv.get("user");
-             * String psw = dotenv.get("password");
-             */
-            /*
-             * String usr = "root";
-             * String psw = "root";
-             * String url = "jdbc:mysql://localhost:33066/BDCamas";
-             */
             String usr = "admincamas";
             String psw = "Carlos3231234$";
             String url = "jdbc:mysql://serverdayanara.mysql.database.azure.com:3306/BDCamas";
+
             Class.forName("com.mysql.cj.jdbc.Driver");
             cnx = DriverManager.getConnection(url, usr, psw);
         } catch (SQLException e) {
