@@ -9,14 +9,14 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 
 -- -----------------------------------------------------
 
-
-CREATE SCHEMA IF NOT EXISTS `bdcamas` DEFAULT CHARACTER SET utf8 ;
-USE `bdcamas` ;
+Drop SCHEMA `dbcamasutra`;
+CREATE SCHEMA IF NOT EXISTS `dbcamasutra` DEFAULT CHARACTER SET utf8 ;
+USE `dbcamasutra` ;
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Categorias`
+-- Table `dbcamasutra`.`Categorias`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Categorias` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Categorias` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
   `descripcion` TEXT NOT NULL,
@@ -31,9 +31,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`EstadosProducto`
+-- Table `dbcamasutra`.`EstadosProducto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`EstadosProducto` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`EstadosProducto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
   `descripcion` TEXT NOT NULL,
@@ -48,9 +48,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Proveedores`
+-- Table `dbcamasutra`.`Proveedores`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Proveedores` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Proveedores` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `empresa` VARCHAR(245) NOT NULL,
   `telefono` VARCHAR(15) NOT NULL,
@@ -67,9 +67,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Productos`
+-- Table `dbcamasutra`.`Productos`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Productos` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Productos` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
   `descripcion` TEXT NOT NULL,
@@ -89,26 +89,26 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Productos` (
   INDEX `fk_Productos_Proveedores1_idx` (`idProveedor` ASC) VISIBLE,
   CONSTRAINT `fk_Productos_Categorias`
     FOREIGN KEY (`idCategoria`)
-    REFERENCES `bdcamas`.`Categorias` (`id`)
+    REFERENCES `dbcamasutra`.`Categorias` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Productos_EstadosProducto1`
     FOREIGN KEY (`idEstado`)
-    REFERENCES `bdcamas`.`EstadosProducto` (`id`)
+    REFERENCES `dbcamasutra`.`EstadosProducto` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Productos_Proveedores1`
     FOREIGN KEY (`idProveedor`)
-    REFERENCES `bdcamas`.`Proveedores` (`id`)
+    REFERENCES `dbcamasutra`.`Proveedores` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Imagenes`
+-- Table `dbcamasutra`.`Imagenes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Imagenes` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Imagenes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idProducto` INT NOT NULL,
   `img` TEXT NULL,
@@ -116,15 +116,15 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Imagenes` (
   PRIMARY KEY (`id`),
     CONSTRAINT `fk_Productos_IMAGEN`
     FOREIGN KEY (`idProducto`)
-    REFERENCES `bdcamas`.`Productos` (`id`)
+    REFERENCES `dbcamasutra`.`Productos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
 ENGINE = InnoDB;
 -- -----------------------------------------------------
--- Table `bdcamas`.`Roles`
+-- Table `dbcamasutra`.`Roles`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Roles` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Roles` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
   `descripcion` TEXT NOT NULL,
@@ -138,9 +138,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`EstadosEmpleado`
+-- Table `dbcamasutra`.`EstadosEmpleado`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`EstadosEmpleado` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`EstadosEmpleado` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
   `descripcion` TEXT NOT NULL,
@@ -154,9 +154,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Empleados`
+-- Table `dbcamasutra`.`Empleados`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Empleados` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Empleados` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `dni` CHAR(10) NOT NULL,
   `nombres` VARCHAR(245) NOT NULL,
@@ -178,15 +178,15 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Empleados` (
   UNIQUE INDEX `dni_UNIQUE` (`dni` ASC) VISIBLE,
   CONSTRAINT `fk_Usuarios_Roles1`
     FOREIGN KEY (`idRol`)
-    REFERENCES `bdcamas`.`Roles` (`id`)
+    REFERENCES `dbcamasutra`.`Roles` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Usuarios_EstadosUsuario1`
     FOREIGN KEY (`idEstado`)
-    REFERENCES `bdcamas`.`EstadosEmpleado` (`id`)
+    REFERENCES `dbcamasutra`.`EstadosEmpleado` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-CREATE TABLE bdcamas.SessionesActivas (
+CREATE TABLE dbcamasutra.SessionesActivas (
     id INT PRIMARY KEY AUTO_INCREMENT,
     idEmpleado INT NOT NULL,
     ip VARCHAR(45) NOT NULL,
@@ -196,7 +196,7 @@ CREATE TABLE bdcamas.SessionesActivas (
     fechaModificacion TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     FOREIGN KEY (idEmpleado) REFERENCES Empleados(id) ON DELETE CASCADE
 );
-  CREATE TABLE IF NOT EXISTS `bdcamas`.`IntentosSession` (
+  CREATE TABLE IF NOT EXISTS `dbcamasutra`.`IntentosSession` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idEmpleado` int NOT NULL,
   `ip` varchar(20) NOT NULL,
@@ -210,12 +210,12 @@ CREATE TABLE bdcamas.SessionesActivas (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE ,
     CONSTRAINT `fk_Usuarios_Session1`
     FOREIGN KEY (`idEmpleado`)
-    REFERENCES `bdcamas`.`Empleados` (`id`)
+    REFERENCES `dbcamasutra`.`Empleados` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
-CREATE TABLE IF NOT EXISTS `bdcamas`.`HistorialSesion` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`HistorialSesion` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idEmpleado` INT NOT NULL,
   `ip`VARCHAR(15) NOT NULL,
@@ -226,16 +226,16 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`HistorialSesion` (
   PRIMARY KEY (`id`),
 CONSTRAINT `fk_Usuarios_Session`
 FOREIGN KEY (`idEmpleado`)
-REFERENCES `bdcamas`.`Empleados` (`id`)
+REFERENCES `dbcamasutra`.`Empleados` (`id`)
 ON DELETE CASCADE
 ON UPDATE NO ACTION);
 
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Stock`
+-- Table `dbcamasutra`.`Stock`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Stock` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Stock` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idProducto` INT NOT NULL,
   `ubicacion` VARCHAR(245) NOT NULL,
@@ -249,16 +249,16 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Stock` (
   UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
   CONSTRAINT `fk_Stock_Productos1`
     FOREIGN KEY (`idProducto`)
-    REFERENCES `bdcamas`.`Productos` (`id`)
+    REFERENCES `dbcamasutra`.`Productos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Clientes`
+-- Table `dbcamasutra`.`Clientes`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Clientes` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Clientes` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombres` VARCHAR(245) NOT NULL,
   `apePaterno` VARCHAR(245) NOT NULL,
@@ -277,9 +277,9 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Clientes` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`MetodoPago`
+-- Table `dbcamasutra`.`MetodoPago`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`MetodoPago` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`MetodoPago` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(145) NOT NULL,
   `descripcion` VARCHAR(245) NOT NULL,
@@ -292,9 +292,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`TipoComprobante`
+-- Table `dbcamasutra`.`TipoComprobante`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`TipoComprobante` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`TipoComprobante` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(145) NOT NULL,
   `descripcion` VARCHAR(245) NOT NULL,
@@ -307,9 +307,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Comprobante`
+-- Table `dbcamasutra`.`Comprobante`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Comprobante` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Comprobante` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `monto` DOUBLE NOT NULL,
   `fecha` DATE  NOT NULL,
@@ -323,16 +323,16 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Comprobante` (
   INDEX `fk_Comprobante_TipoComprobante1_idx` (`idTipoComprobante` ASC) VISIBLE,
   CONSTRAINT `fk_Comprobante_TipoComprobante1`
     FOREIGN KEY (`idTipoComprobante`)
-    REFERENCES `bdcamas`.`TipoComprobante` (`id`)
+    REFERENCES `dbcamasutra`.`TipoComprobante` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Ventas`
+-- Table `dbcamasutra`.`Ventas`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Ventas` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Ventas` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idCliente` INT NOT NULL,
   `idEmpleado` INT NOT NULL,
@@ -355,31 +355,31 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Ventas` (
   INDEX `fk_Ventas_Comprobante1_idx` (`idComprobante` ASC) VISIBLE,
   CONSTRAINT `fk_Ventas_Clientes1`
     FOREIGN KEY (`idCliente`)
-    REFERENCES `bdcamas`.`Clientes` (`id`)
+    REFERENCES `dbcamasutra`.`Clientes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Ventas_Usuarios1`
     FOREIGN KEY (`idEmpleado`)
-    REFERENCES `bdcamas`.`Empleados` (`id`)
+    REFERENCES `dbcamasutra`.`Empleados` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Ventas_MetodoPago1`
     FOREIGN KEY (`idMetodoPago`)
-    REFERENCES `bdcamas`.`MetodoPago` (`id`)
+    REFERENCES `dbcamasutra`.`MetodoPago` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Ventas_Comprobante1`
     FOREIGN KEY (`idComprobante`)
-    REFERENCES `bdcamas`.`Comprobante` (`id`)
+    REFERENCES `dbcamasutra`.`Comprobante` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`DetallesVenta`
+-- Table `dbcamasutra`.`DetallesVenta`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`DetallesVenta` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`DetallesVenta` (
   `idVenta` INT NOT NULL,
   `cantidad` INT NOT NULL,
   `idProducto` INT NOT NULL,
@@ -392,21 +392,21 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`DetallesVenta` (
   INDEX `fk_DetallesVenta_Productos1_idx` (`idProducto` ASC) VISIBLE,
   CONSTRAINT `fk_Detalles_Venta_Ventas1`
     FOREIGN KEY (`idVenta`)
-    REFERENCES `bdcamas`.`Ventas` (`id`)
+    REFERENCES `dbcamasutra`.`Ventas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DetallesVenta_Productos1`
     FOREIGN KEY (`idProducto`)
-    REFERENCES `bdcamas`.`Productos` (`id`)
+    REFERENCES `dbcamasutra`.`Productos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Direcciones`
+-- Table `dbcamasutra`.`Direcciones`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Direcciones` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Direcciones` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idCliente` INT NOT NULL,
   `direccion` TEXT NOT NULL,
@@ -421,16 +421,16 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Direcciones` (
   INDEX `fk_Direcciones_Clientes1_idx` (`idCliente` ASC) VISIBLE,
   CONSTRAINT `fk_Direcciones_Clientes1`
     FOREIGN KEY (`idCliente`)
-    REFERENCES `bdcamas`.`Clientes` (`id`)
+    REFERENCES `dbcamasutra`.`Clientes` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`EstadosEnvio`
+-- Table `dbcamasutra`.`EstadosEnvio`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`EstadosEnvio` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`EstadosEnvio` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
   `descripcion` TEXT NOT NULL,
@@ -444,9 +444,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Transporte`
+-- Table `dbcamasutra`.`Transporte`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Transporte` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Transporte` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `placa` VARCHAR(245) NOT NULL,
   `modelo` VARCHAR(245) NOT NULL,
@@ -461,9 +461,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Envios`
+-- Table `dbcamasutra`.`Envios`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Envios` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Envios` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `idEmpleado` INT NOT NULL,
   `idTransporte` INT NOT NULL,
@@ -484,31 +484,31 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Envios` (
   INDEX `fk_Envios_Transporte1_idx` (`idTransporte` ASC) VISIBLE,
   CONSTRAINT `fk_Envios_Usuarios1`
     FOREIGN KEY (`idEmpleado`)
-    REFERENCES `bdcamas`.`Empleados` (`id`)
+    REFERENCES `dbcamasutra`.`Empleados` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Envios_Ventas1`
     FOREIGN KEY (`idVenta`)
-    REFERENCES `bdcamas`.`Ventas` (`id`)
+    REFERENCES `dbcamasutra`.`Ventas` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Envios_EstadosEnvio1`
     FOREIGN KEY (`idEstadoEnvio`)
-    REFERENCES `bdcamas`.`EstadosEnvio` (`id`)
+    REFERENCES `dbcamasutra`.`EstadosEnvio` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Envios_Transporte1`
     FOREIGN KEY (`idTransporte`)
-    REFERENCES `bdcamas`.`Transporte` (`id`)
+    REFERENCES `dbcamasutra`.`Transporte` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`EstadosCompra`
+-- Table `dbcamasutra`.`EstadosCompra`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`EstadosCompra` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`EstadosCompra` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
   `descripcion` VARCHAR(245) NOT NULL,
@@ -521,9 +521,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`ProveedorContacto`
+-- Table `dbcamasutra`.`ProveedorContacto`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`ProveedorContacto` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`ProveedorContacto` (
   `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(245) NOT NULL,
   `telefono` VARCHAR(11) NOT NULL,
@@ -536,16 +536,16 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`ProveedorContacto` (
   INDEX `fk_ProveedorContacto_Proveedores1_idx` (`idProveedor` ASC) VISIBLE,
   CONSTRAINT `fk_ProveedorContacto_Proveedores1`
     FOREIGN KEY (`idProveedor`)
-    REFERENCES `bdcamas`.`Proveedores` (`id`)
+    REFERENCES `dbcamasutra`.`Proveedores` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`Compras`
+-- Table `dbcamasutra`.`Compras`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`Compras` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`Compras` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `fecha` DATE NOT NULL,
   `total` DOUBLE NULL,
@@ -566,31 +566,31 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`Compras` (
   INDEX `fk_Compras_Comprobante1_idx` (`idComprobante` ASC) VISIBLE,
   CONSTRAINT `fk_Compras_Usuarios1`
     FOREIGN KEY (`idEmpleado`)
-    REFERENCES `bdcamas`.`Empleados` (`id`)
+    REFERENCES `dbcamasutra`.`Empleados` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Compras_Estado1`
     FOREIGN KEY (`idEstadoCompra`)
-    REFERENCES `bdcamas`.`EstadosCompra` (`id`)
+    REFERENCES `dbcamasutra`.`EstadosCompra` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Compras_ProveedorContacto1`
     FOREIGN KEY (`idProveedor`)
-    REFERENCES `bdcamas`.`ProveedorContacto` (`id`)
+    REFERENCES `dbcamasutra`.`ProveedorContacto` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_Compras_Comprobante1`
     FOREIGN KEY (`idComprobante`)
-    REFERENCES `bdcamas`.`Comprobante` (`id`)
+    REFERENCES `dbcamasutra`.`Comprobante` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `bdcamas`.`DetallesCompra`
+-- Table `dbcamasutra`.`DetallesCompra`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `bdcamas`.`DetallesCompra` (
+CREATE TABLE IF NOT EXISTS `dbcamasutra`.`DetallesCompra` (
   `idCompra` INT NOT NULL,
   `idProducto` INT NOT NULL,
   `cantidad` INT NOT NULL,
@@ -602,12 +602,12 @@ CREATE TABLE IF NOT EXISTS `bdcamas`.`DetallesCompra` (
   INDEX `fk_DetallesCompra_Compras1_idx` (`idCompra` ASC) VISIBLE,
   CONSTRAINT `fk_DetalllesCompra_Productos1`
     FOREIGN KEY (`idProducto`)
-    REFERENCES `bdcamas`.`Productos` (`id`)
+    REFERENCES `dbcamasutra`.`Productos` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_DetallesCompra_Compras1`
     FOREIGN KEY (`idCompra`)
-    REFERENCES `bdcamas`.`Compras` (`id`)
+    REFERENCES `dbcamasutra`.`Compras` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;

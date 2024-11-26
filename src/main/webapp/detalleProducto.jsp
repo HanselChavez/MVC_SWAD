@@ -114,14 +114,13 @@
             <div class="max-w-[1200px] mt-28 mx-auto p-5">
                 <!-- Breadcrumb -->
 
-
                 <div class="flex w-auto mx-auto flex-wrap md:flex-nowrap gap-5">
                     <div class="flex flex-row gap-4 items-start">
                         <div class="w-[30rem] border-gray-200 rounded-lg bg-gray-200 h-[30rem] border overflow-hidden relative" id="imageContainer">
                             <div class="flex h-full justify-center items-center object-fit hover:cursor-pointer overflow-hidden">
                                 <%
                                     // Recorrer la lista de imágenes del producto
-                                    String imagenPrincipal = null;
+                                    String imagenPrincipal = null; // Obtener la URL de la imagen principal
                                     for (ImagenProducto imagen : producto.getListaImagenes()) {
                                         if (imagen.isEsPrincipal()) {
                                             imagenPrincipal = imagen.getImagen(); // Obtener la URL de la imagen principal

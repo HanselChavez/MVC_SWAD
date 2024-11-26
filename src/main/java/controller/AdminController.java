@@ -71,6 +71,15 @@ public class AdminController extends HttpServlet {
                         break;
                     case "transporte":
                         view = "transporte/list.jsp";
+                        if (accion != null && accion.equals("add")) {
+                            view = "transporte/add.jsp";
+                        } else if (accion != null && accion.equals("delete")) {
+                            view = "transporte/delete.jsp";
+                        } else if (accion != null && accion.equals("details")) {
+                            view = "transporte/details.jsp";
+                        } else if (accion != null && accion.equals("edit")) {
+                            view = "transporte/edit.jsp";
+                        }
                         break;
                     case "categoria":
                         view = "category/list.jsp";
@@ -118,7 +127,7 @@ public class AdminController extends HttpServlet {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
             dispatcher.forward(request, response); // Forward to the specific view
         } else {
-        response.sendRedirect("../auth/error401.jsp");
+            response.sendRedirect("../auth/error401.jsp");
         }
     }
 }

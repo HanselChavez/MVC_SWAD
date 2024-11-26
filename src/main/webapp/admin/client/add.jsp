@@ -13,7 +13,6 @@
 
 <h1 class="text-black text-4xl font-bold">Agregar Cliente</h1>
 
-
 <form action="/Cliente/add" method="post" class="max-w-[50rem] bg-trasparent text-black my-6 flex gap-y-4  md:gap-y-6 flex-col xs:flex-row  flex-wrap w-full">
     <div class="flex flex-col gap-y-4 md:gap-y-6 w-full  md:w-2/4 md:pr-4 ">
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full  ">
@@ -50,7 +49,7 @@
         </div>
     </div>
     <div class="flex flex-col xs:flex-row w-full gap-4 justify-evenly">
-        <a  href="/admin?pagina=cliente"   class="hover:bg-red-800 cursor-pointer transition-all duration-500 bg-red-600 
+        <a  href="/admin?pagina=cliente" class="hover:bg-red-800 cursor-pointer transition-all duration-500 bg-red-600 
             px-5 justify-center py-1 rounded-md font-medium text-lg flex gap-2 items-center">Cancelar</a>
         <button type="submit" class="hover:bg-green-800 cursor-pointer transition-all duration-500 bg-green-600 
                 px-5 justify-center  py-1 rounded-md font-medium text-lg flex gap-2 items-center">Registrar</button>
