@@ -56,6 +56,9 @@ public class ProveedorController extends HttpServlet {
 
     protected void handleAddProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String empresa = request.getParameter("empresa");
         String telefono = request.getParameter("telefono");
         String ruc = request.getParameter("ruc");
@@ -95,6 +98,9 @@ public class ProveedorController extends HttpServlet {
     private void handleEditProveedor(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         int idProveedor = Integer.parseInt(request.getParameter("id"));
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String empresa = request.getParameter("empresa");
         String telefono = request.getParameter("telefono");
         String direccion = request.getParameter("direccion");

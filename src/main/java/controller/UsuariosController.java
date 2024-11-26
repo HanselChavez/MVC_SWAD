@@ -65,6 +65,9 @@ public class UsuariosController extends HttpServlet {
             throws ServletException, IOException {
         // Aquí se maneja la lógica para agregar un usuario
         // Los parámetros se obtienen del request como en tu código original
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String dni = request.getParameter("dni");
         String nombre = request.getParameter("nombre");
         String correo = request.getParameter("correo");
@@ -94,6 +97,9 @@ public class UsuariosController extends HttpServlet {
 
     private void handleEditUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String dni = request.getParameter("dni");
         String nombre = request.getParameter("nombre");

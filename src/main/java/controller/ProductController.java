@@ -81,6 +81,9 @@ public class ProductController extends HttpServlet {
     private void handleAddProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         // Obtener los parámetros del request
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         double preciocompra = Double.parseDouble(request.getParameter("pcompra"));
@@ -242,6 +245,9 @@ public class ProductController extends HttpServlet {
 
     private void handleEditProducto(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String descripcion = request.getParameter("descripcion");
         String nombre = request.getParameter("nombre");
