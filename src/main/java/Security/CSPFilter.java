@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.FilterConfig;
 
-@WebFilter(filterName = "ContentSecurityFilter", urlPatterns = {"/*"})
-public class ContentSecurityFilter extends HttpFilter {
+@WebFilter(filterName = "CSPFilter", urlPatterns = {"/*"})
+public class CSPFilter extends HttpFilter {
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-        // Inicialización si es necesario
+        
     }
-
+    @Override
     public void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
             throws IOException, ServletException {
 
