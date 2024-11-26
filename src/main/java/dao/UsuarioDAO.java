@@ -1,4 +1,5 @@
 package dao;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -13,7 +14,6 @@ import model.Usuario;
 import org.mindrot.jbcrypt.BCrypt;
 import utilidades.Conexion;
 
-
 public class UsuarioDAO {
 
     public UsuarioDAO() {
@@ -27,7 +27,7 @@ public class UsuarioDAO {
             selectStmt.setLong(1, id);
             ResultSet rsSelectExistente = selectStmt.executeQuery();
             if (rsSelectExistente.next()) {
-                String updateIntentos = "UPDATE SessionesActivas SET token=? , ip=? where idEmpleado = ?" ;
+                String updateIntentos = "UPDATE SessionesActivas SET token=? , ip=? where idEmpleado = ?";
                 PreparedStatement sentenciaUpdate = cnx.prepareStatement(updateIntentos);
                 sentenciaUpdate.setString(1, token);
                 sentenciaUpdate.setString(2, ipCliente);
@@ -172,13 +172,36 @@ public class UsuarioDAO {
     }
 
     private void incrementIntentos(Connection cnx, long idEmpleado, String ipCliente) throws SQLException {
-        String updateIntentos = "INSERT INTO IntentosSession (idEmpleado, ip, cantidad, fecha, hora, usuarioModificador) "
-                + "VALUES (?, ?, 1, CURDATE(), NOW(), ?) ON DUPLICATE KEY UPDATE cantidad = cantidad + 1, ip = VALUES(ip), fecha = CURDATE(), hora = NOW()";
-        PreparedStatement sentenciaUpdate = cnx.prepareStatement(updateIntentos);
-        sentenciaUpdate.setLong(1, idEmpleado);
-        sentenciaUpdate.setString(2, ipCliente);
-        sentenciaUpdate.setLong(3, idEmpleado);
-        sentenciaUpdate.executeUpdate();
+        // 1. Verificar si existe un intento de sesión para el idEmpleado y la ipCliente
+        String selectQuery = "SELECT cantidad FROM IntentosSession WHERE idEmpleado = ? AND ip = ?";
+
+        try (PreparedStatement selectStmt = cnx.prepareStatement(selectQuery)) {
+            // Establecer los parámetros del SELECT
+            selectStmt.setLong(1, idEmpleado);
+            selectStmt.setString(2, ipCliente);
+
+            try (ResultSet rs = selectStmt.executeQuery()) {
+                // 2. Si el registro existe, actualizar la cantidad
+                if (rs.next()) {
+                    // El registro existe, actualizar la cantidad sumando 1
+                    String updateQuery = "UPDATE IntentosSession SET cantidad = cantidad + 1, fecha = CURDATE(), hora = NOW() WHERE idEmpleado = ? AND ip = ?";
+                    try (PreparedStatement updateStmt = cnx.prepareStatement(updateQuery)) {
+                        updateStmt.setLong(1, idEmpleado);
+                        updateStmt.setString(2, ipCliente);
+                        updateStmt.executeUpdate();
+                    }
+                } else {
+                    // 3. Si el registro no existe, insertar un nuevo intento de sesión con cantidad = 1
+                    String insertQuery = "INSERT INTO IntentosSession (idEmpleado, ip, cantidad, fecha, hora, usuarioModificador) VALUES (?, ?, 1, CURDATE(), NOW(), ?)";
+                    try (PreparedStatement insertStmt = cnx.prepareStatement(insertQuery)) {
+                        insertStmt.setLong(1, idEmpleado);
+                        insertStmt.setString(2, ipCliente);
+                        insertStmt.setLong(3, idEmpleado); // Aquí asumo que `usuarioModificador` es el `idEmpleado`
+                        insertStmt.executeUpdate();
+                    }
+                }
+            }
+        }
     }
 
     public int createUser(String dni, String nombres, String correo, String contra,
