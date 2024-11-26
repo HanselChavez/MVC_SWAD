@@ -131,7 +131,11 @@ public class Autentica extends HttpServlet {
             response.sendRedirect(getRedirectUrl(cli));
 
         } else {
-            request.setAttribute("error", getErrorMessage(cli));
+            if (cli!=null&&cli.getRol().getId() == -3) {
+                request.setAttribute("error", "Demasiados intentos fallidos.");
+            } else {
+                request.setAttribute("error", getErrorMessage(cli));
+            }
             request.getRequestDispatcher("/auth/login.jsp").forward(request, response);
         }
     }

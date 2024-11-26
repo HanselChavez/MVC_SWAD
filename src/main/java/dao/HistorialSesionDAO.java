@@ -5,10 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import model.EstadoEmpleado;
 import model.HistorialSesion;
-import model.Rol;
-import model.Usuario;
 import utilidades.Conexion;
 public class HistorialSesionDAO {
     public List<HistorialSesion> getHistorialSesion() {
