@@ -128,10 +128,13 @@ public class Autentica extends HttpServlet {
             sesion.setAttribute("Authorization", "Bearer " + token);
             sesion.setAttribute("userlog", cli.getRol().getId().toString());
             sesion.setAttribute("idUsuario", cli.getId());
+            response.setHeader("Content-Security-Policy", "default-src 'self';");
+            response.setHeader("X-Content-Type-Options", "nosniff");
+            response.setHeader("X-Frame-Options", "DENY");
             response.sendRedirect(getRedirectUrl(cli));
 
         } else {
-            if (cli!=null&&cli.getRol().getId() == -3) {
+            if (cli != null && cli.getRol().getId() == -3) {
                 request.setAttribute("error", "Demasiados intentos fallidos.");
             } else {
                 request.setAttribute("error", getErrorMessage(cli));
