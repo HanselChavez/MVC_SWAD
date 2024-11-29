@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="model.Cliente,dao.ClienteDAO, java.util.List, java.util.LinkedList" %>
+<%@page import="model.Transporte,dao.TransporteDAO, java.util.List, java.util.LinkedList"%>
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Listado de Clientes</title>        
@@ -11,63 +12,52 @@
 
 </head>
 <%
-    ClienteDAO C = new ClienteDAO();
+    TransporteDAO T = new TransporteDAO();
+    List<Transporte> lista = new LinkedList<>();
+    lista = T.getTransportes();
+    
     String idParam = request.getParameter("id");
     Long id = Long.parseLong(idParam);
-    Cliente cl = C.getClienteById(idParam);
+    Transporte tr = T.getTransporteById(id);
+
 %>
 
 
 <h1 class="text-black text-4xl font-bold">Eliminar Transporte</h1>
 
-<form action="/Cliente/delete" method="post" class="text-black max-w-[35rem] my-6 flex gap-y-4  flex-col xs:flex-row  flex-wrap w-full">
-    <p class="text-xl font-semibold text-center">¿Estas seguro de eliminar este cliente?</p>
-    <input id="did" name="id" type="text" hidden="true" value="<%=cl.getId()%>">
+<form action="/Transportes/delete" method="post" class="text-black max-w-[35rem] my-6 flex gap-y-4  flex-col xs:flex-row  flex-wrap w-full">
+    <p class="text-xl font-semibold text-center">¿Estas seguro de eliminar transporte?</p>
+    <input id="did" name="id" type="text" hidden="true" value="<%=tr.getId()%>">
     <div class="flex flex-col gap-y-2  w-full  ">
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
             <dt class="font-medium">
-                Nombre:
+                Placa
             </dt>
-            <dd class="text-end text-left" id="ddnombre">      <%=cl.getNombre()%>
+            <dd class="text-end text-left" id="delplaca">      <%=tr.getPlaca()%>
             </dd>
         </div>
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
             <dt class="font-medium">
-                Apell. Paterno:
+                Modelo
             </dt>
-            <dd class="text-end text-left" id="ddpaterno">      <%=cl.getApellPaterno()%>
+            <dd class="text-end text-left" id="delmodelo">      <%=tr.getModelo()%>
             </dd>
         </div>
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
             <dt class="font-medium">
-                Apell. Materno:
+                Marca
             </dt>
-            <dd class="text-end text-left" id="ddmaterno">  
-                <%=cl.getApellMaterno()%>
+            <dd class="text-end text-left" id="delmarca">  
+                <%=tr.getMarca()%>
             </dd>
         </div>
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
             <dt class="font-medium">
-                Telefono:
+                Descripcion: 
             </dt>
-            <dd class="text-end text-left" id="ddtelf">      <%=cl.getTelefono()%>
+            <dd class="text-end text-left" id="deldecripcion">      <%=tr.getDescripcion()%>
             </dd>
         </div>
-        <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
-            <dt class="font-medium">
-                Correo;
-            </dt>
-            <dd class="text-end text-left" id="dddirec">      <%=cl.getCorreo()%>
-            </dd>
-        </div>
-        <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
-            <dt class="font-medium">
-                DNI:
-            </dt>
-            <dd class="text-end text-left" id="dddni">      <%=cl.getDni()%>
-            </dd>
-        </div>
-
     </div>
     <div class="flex text-white flex-col xs:flex-row w-full gap-4 justify-between">
         <a  href="/admin?pagina=transporte"   class="hover:bg-red-800 cursor-pointer transition-all duration-500 bg-red-600 

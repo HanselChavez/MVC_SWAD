@@ -16,9 +16,9 @@ public class Conexion {
 
     public static Connection conecta() {
         try {
-            String usr = "kthxaeujln";
-            String psw = "$prFzsINPZX4khEE";
-            String url = "jdbc:mysql://furniture-dayanara-server.mysql.database.azure.com:3306/bdcamas";
+            String usr = "root";
+            String psw = "977966335";
+            String url = "jdbc:mysql://localhost:3307/BDCamas";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             cnx = DriverManager.getConnection(url, usr, psw);

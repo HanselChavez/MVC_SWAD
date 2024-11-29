@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="model.Cliente,dao.ClienteDAO, java.util.List, java.util.LinkedList" %>
+<%@page import="model.Transporte,dao.TransporteDAO, java.util.List, java.util.LinkedList"%>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Listado de Clientes</title>        
@@ -11,10 +11,13 @@
 
 </head>
 <%
-    ClienteDAO C = new ClienteDAO();
+    TransporteDAO T = new TransporteDAO();
+    List<Transporte> lista = new LinkedList<>();
+    lista = T.getTransportes();
+    
     String idParam = request.getParameter("id");
     Long id = Long.parseLong(idParam);
-    Cliente cl = C.getClienteById(idParam);
+    Transporte tr = T.getTransporteById(id);
 %>
 
 
@@ -26,29 +29,29 @@
             <dt class="font-medium">
                 Placa:
             </dt>
-            <dd class="text-end text-left" id="ddnombre">      <%=cl.getNombre()%>
+            <dd class="text-end text-left" id="dplaca">      <%=tr.getPlaca()%>
             </dd>
         </div>
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
             <dt class="font-medium">
                 Modelo:
             </dt>
-            <dd class="text-end text-left" id="ddpaterno">      <%=cl.getApellPaterno()%>
+            <dd class="text-end text-left" id="dmodelo">      <%=tr.getModelo()%>
             </dd>
         </div>
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
             <dt class="font-medium">
                 Marca:
             </dt>
-            <dd class="text-end text-left" id="ddmaterno">  
-                <%=cl.getApellMaterno()%>
+            <dd class="text-end text-left" id="dmarca">  
+                <%=tr.getMarca()%>
             </dd>
         </div>
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full ">
             <dt class="font-medium">
                 Descripcion:
             </dt>
-            <dd class="text-end text-left" id="ddtelf">      <%=cl.getTelefono()%>
+            <dd class="text-end text-left" id="ddescrip">      <%=tr.getDescripcion()%>
             </dd>
         </div>
     </div>

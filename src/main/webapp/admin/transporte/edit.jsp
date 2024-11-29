@@ -1,5 +1,6 @@
+<%@page import="model.Transporte"%>
+<%@page import="model.Transporte,dao.TransporteDAO, java.util.List, java.util.LinkedList"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@page import="model.Cliente,dao.ClienteDAO, java.util.List, java.util.LinkedList" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Listado de Clientes</title>        
@@ -11,40 +12,40 @@
 
 </head>
 <%
-    ClienteDAO C = new ClienteDAO();
-    List<Cliente> lista = new LinkedList<>();
-    lista = C.getClientes();
-
+    TransporteDAO T = new TransporteDAO();
+    List<Transporte> lista = new LinkedList<>();
+    lista = T.getTransportes();
+    
     String idParam = request.getParameter("id");
     Long id = Long.parseLong(idParam);
-    Cliente cl = C.getClienteById(idParam);
+    Transporte tr = T.getTransporteById(id);           
 %>
 <h1 class="text-black text-4xl font-bold">Editar Transporte</h1>
 
-<form action="/Cliente/edit" method="post" class="text-black my-6 flex gap-y-4 max-w-[70rem]  md:gap-y-6 flex-col xs:flex-row  flex-wrap w-full">
-    <input id="eid" name="id" type="text" hidden="true" value="<%=cl.getId()%>">
+<form action="/Transportes/edit" method="post" class="text-black my-6 flex gap-y-4 max-w-[70rem]  md:gap-y-6 flex-col xs:flex-row  flex-wrap w-full">
+    <input id="eid" name="id" type="text" hidden="true" value="<%=tr.getId()%>">
     <div class="flex flex-col gap-y-4 md:gap-y-6 w-full  md:w-2/4 md:pr-4 ">
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full  ">
-            <label for="eplaca" class="sm:text-lg font-medium   xs:w-2/4 sm:w-2/5 md:w-2/4">Placa: </label>
-            <input id="eplaca" name="eplaca" type="text" class="bg-transparent outline-none font-sans 
-                   px-2 py-1 w-full border border-secondary-300 rounded-md " value="<%=cl.getNombre()%>">
+            <label for="placa" class="sm:text-lg font-medium   xs:w-2/4 sm:w-2/5 md:w-2/4">Placa: </label>
+            <input id="placa" name="placa" type="text" class="bg-transparent outline-none font-sans 
+                   px-2 py-1 w-full border border-secondary-300 rounded-md " value="<%=tr.getPlaca()%>">
         </div>
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full  ">
-            <label for="emodelo" class="sm:text-lg font-medium xs:w-2/4 sm:w-2/5 md:w-2/4">Modelo:</label>
-            <input id="emodelo" name="emodelo" type="text" class="bg-transparent outline-none font-sans 
-                   px-2 py-1 w-full border border-secondary-300 rounded-md " value="<%=cl.getApellPaterno()%>">
+            <label for="modelo" class="sm:text-lg font-medium xs:w-2/4 sm:w-2/5 md:w-2/4">Modelo:</label>
+            <input id="modelo" name="modelo" type="text" class="bg-transparent outline-none font-sans 
+                   px-2 py-1 w-full border border-secondary-300 rounded-md " value="<%=tr.getModelo()%>">
         </div>
     </div>
     <div class="flex flex-col gap-y-4 md:gap-y-6 w-full md:w-2/4  ">
         <div class="flex flex-col xs:flex-row gap-0.5 justify-between xs:items-center  w-full ">
-            <label for="emarca" class="sm:text-lg font-medium xs:w-2/4 sm:w-2/5">Marca:</label>
-            <input id="emarca" name="emarca" type="text" class="bg-transparent outline-none 
-                   px-2 py-1 pr-4 font-sans w-full border  border-secondary-300 rounded-md " value="<%=cl.getDni()%>">
+            <label for="marca" class="sm:text-lg font-medium xs:w-2/4 sm:w-2/5">Marca:</label>
+            <input id="marca" name="marca" type="text" class="bg-transparent outline-none 
+                   px-2 py-1 pr-4 font-sans w-full border  border-secondary-300 rounded-md " value="<%=tr.getMarca()%>">
         </div> 
         <div class="flex flex-col xs:flex-row gap-0.5 justify-between xs:items-center  w-full ">
-            <label for="edisc" class="sm:text-lg font-medium xs:w-2/4 sm:w-2/5">Descripcion:</label>
-            <input id="edisc" name="edisc" type="text" class="bg-transparent outline-none 
-                   px-2 py-1 pr-4 font-sans w-full border  border-secondary-300 rounded-md "value="<%=cl.getCorreo()%>">
+            <label for="descripcion" class="sm:text-lg font-medium xs:w-2/4 sm:w-2/5">Descripcion:</label>
+            <input id="descripcion" name="descripcion" type="text" class="bg-transparent outline-none 
+                   px-2 py-1 pr-4 font-sans w-full border  border-secondary-300 rounded-md "value="<%=tr.getDescripcion()%>">
         </div> 
     </div>
 

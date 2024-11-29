@@ -12,7 +12,7 @@
 
 <h1 class="text-black text-4xl font-bold">Agregar Transporte</h1>
 
-<form action="/transporte/add" method="post" class="max-w-[50rem] bg-trasparent text-black my-6 flex gap-y-4  md:gap-y-6 flex-col xs:flex-row  flex-wrap w-full">
+<form action="/Transportes/add" method="post" class="max-w-[50rem] bg-trasparent text-black my-6 flex gap-y-4  md:gap-y-6 flex-col xs:flex-row  flex-wrap w-full">
     <div class="flex flex-col gap-y-4 md:gap-y-6 w-full  md:w-2/4 md:pr-4 ">
         <div class="flex flex-col xs:flex-row gap-0.5  justify-between xs:items-center  w-full  ">
             <label for="placa" class="sm:text-lg font-medium   xs:w-2/4 sm:w-2/5 md:w-2/4">Placa: </label>

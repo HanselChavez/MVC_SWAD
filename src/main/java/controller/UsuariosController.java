@@ -94,18 +94,13 @@ public class UsuariosController extends HttpServlet {
 
     private void handleEditUser(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String id = request.getParameter("id");
         String dni = request.getParameter("dni");
         String nombre = request.getParameter("nombre");
-        Date fechanac = Date.valueOf(request.getParameter("fecha")); // No se está obteniendo fechanac del request
-        String username = request.getParameter("username");
         String correo = request.getParameter("correo");
         String password = request.getParameter("password");
         String apellidoMat = request.getParameter("apeMaterno");
-        String fecha = request.getParameter("fecha");
         String tel = request.getParameter("telefono");
         String apellidoPat = request.getParameter("apePaterno");
-        String foto = request.getParameter("foto");
         int idrol = 1;
         try {
             idrol = Integer.parseInt(request.getParameter("rol"));
