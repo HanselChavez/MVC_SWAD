@@ -7,6 +7,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
         <%@include file="./referencias.jsp" %>
+    
         <title>Inicio</title>
     </head>
     <body id="body" class="font-raleway overflow-x-hidden">     
@@ -449,27 +450,6 @@
              <i class="fa-brands fa-whatsapp"></i>
          </button>-->
     </div>
-    <script>
-        const navbutton = document.getElementById('showNav');
-        const closenav = document.getElementById('closeNav');
-        const navBar = document.getElementById("navbar");
-        const overlay = document.querySelector(".overlay");
-        navbutton?.addEventListener('click', () => {
-            navBar?.classList.remove('translate-x-full');
-            overlay.classList.remove('hidden');
-        });
-        closenav?.addEventListener('click', () => {
-            navBar?.classList.add('translate-x-full');
-            overlay.classList.add('hidden');
-        });
-        overlay?.addEventListener('click', () => {
-            navBar?.classList.add('translate-x-full');
-            overlay.classList.add('hidden');
-        });
-        function toggleLogButton() {
-            const logButton = document.getElementById('logbutton');
-            logButton.classList.toggle('hidden');
-        }
-    </script>
+ 
 </body>
 </html>

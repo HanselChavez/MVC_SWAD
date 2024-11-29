@@ -53,6 +53,9 @@ public class TransporteController extends HttpServlet {
     // Manejar la creación de un nuevo transporte
     private void handleAddTransporte(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String descripcion = request.getParameter("descripcion");
         String marca = request.getParameter("marca");
         String modelo = request.getParameter("modelo");
@@ -70,6 +73,9 @@ public class TransporteController extends HttpServlet {
     // Manejar la edición de un transporte existente
     private void handleEditTransporte(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         Long id = Long.valueOf(request.getParameter("id"));
         String descripcion = request.getParameter("descripcion");
         String marca = request.getParameter("marca");

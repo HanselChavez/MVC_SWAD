@@ -1,4 +1,5 @@
 package controller;
+
 import dao.RolDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -6,8 +7,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 @WebServlet(name = "Rols", urlPatterns = {"/Rols", "/Rols/add", "/Rols/edit", "/Rols/delete"})
 public class RolController extends HttpServlet {
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -27,6 +30,7 @@ public class RolController extends HttpServlet {
                 break;
         }
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,8 +50,12 @@ public class RolController extends HttpServlet {
                 break;
         }
     }
+
     private void handleAddRol(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
         System.out.println("***************AQUI ANTES DE CREAR***************");
@@ -56,6 +64,7 @@ public class RolController extends HttpServlet {
         System.out.println("***************DESPUES DE CREAR***************");
         request.getRequestDispatcher("/admin/index.jsp?pagina=rol").forward(request, response);
     }
+
     private void handlDeleteRol(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String id = request.getParameter("id");
@@ -65,8 +74,12 @@ public class RolController extends HttpServlet {
         System.out.println("***************DESPUES DE ELIMINAR***************");
         request.getRequestDispatcher("/admin/index.jsp?pagina=rol").forward(request, response);
     }
+
     private void handleEditRol(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");

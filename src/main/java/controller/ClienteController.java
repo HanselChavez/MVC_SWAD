@@ -53,6 +53,9 @@ public class ClienteController extends HttpServlet {
 
     private void handleAddCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String nombre = request.getParameter("nombre");
         String apellPaterno = request.getParameter("apaterno");
         String apellMaterno = request.getParameter("amaterno");
@@ -87,6 +90,9 @@ public class ClienteController extends HttpServlet {
 
     private void handleEditCliente(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
         String id = request.getParameter("id");
         String nombre = request.getParameter("nombre");
         String apellPaterno = request.getParameter("apaterno");
