@@ -129,7 +129,7 @@
                 <div class="h-full ">
                     <% String view = (String) request.getAttribute("view");  %>
                     <% if (view != null) {%>
-                    <jsp:include page="<%= view%>" />
+                    <jsp:include page="<%=view%>" />
                     <% } else { %>
                     <p>Página no encontrada.</p>
                     <% } %>

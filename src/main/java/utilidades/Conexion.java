@@ -17,8 +17,8 @@ public class Conexion {
     public static Connection conecta() {
         try {
             String usr = "root";
-            String psw = "977966335";
-            String url = "jdbc:mysql://localhost:3307/BDCamas";
+            String psw = "root";
+            String url = "jdbc:mysql://localhost:33066/bdcamas";
 
             Class.forName("com.mysql.cj.jdbc.Driver");
             cnx = DriverManager.getConnection(url, usr, psw);

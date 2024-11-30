@@ -277,6 +277,7 @@ public class ProductoDAO {
                     EstadoProducto estado = new EstadoProducto();
                     estado.setNombre(rs.getString("estado"));
                     producto.setEstado(estado);
+                   
                     Proveedor proveedor = new Proveedor();
                     proveedor.setEmpresa(rs.getString("proveedor"));
                     producto.setProveedor(proveedor);

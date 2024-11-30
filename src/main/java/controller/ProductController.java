@@ -1,6 +1,7 @@
 package controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 import dao.ProductoDAO;
 import java.io.File;
 import java.io.IOException;
@@ -15,9 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
+import model.Producto;
 
 @MultipartConfig
-@WebServlet(name = "Producto", urlPatterns = {"/Producto", "/Producto/add", "/Producto/edit", "/Producto/delete"})
+@WebServlet(name = "Producto", urlPatterns = {"/Producto", "/Producto/add","/Producto/filterByCategory","/Producto/edit", "/Producto/delete"})
 public class ProductController extends HttpServlet {
 
     @Override
@@ -45,11 +47,34 @@ public class ProductController extends HttpServlet {
         }
     }
 
+    private void handleFilterByCategory(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        String categoryId = request.getParameter("categoryId");
+        if (categoryId != null && !categoryId.isEmpty()) {
+            ProductoDAO productoDAO = new ProductoDAO();
+            List<Producto> productos = productoDAO.getProductosByCategoria(categoryId);
+
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+
+            String json = new Gson().toJson(productos);
+
+            response.getWriter().write(json);
+        } else {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "El parámetro 'categoryId' es requerido.");
+        }
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getServletPath();
 
+        if (action.equals("/Producto/filterByCategory")) {
+            System.out.println("actuion" + action);
+            handleFilterByCategory(request, response);
+            return;
+        }
         switch (action) {
             case "/Producto/add":
             case "/Producto/edit":
