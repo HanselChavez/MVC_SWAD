@@ -1,0 +1,291 @@
+16-Sep-2024 19:50:35.824 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Nombre de la versión del servidor: Apache Tomcat/9.0.90
+16-Sep-2024 19:50:35.828 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:                      Jun 14 2024 14:45:13 UTC
+16-Sep-2024 19:50:35.828 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Número de versión de servidor:     9.0.90.0
+16-Sep-2024 19:50:35.828 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:                           Windows 11
+16-Sep-2024 19:50:35.828 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Versión de Systema Operativo:      10.0
+16-Sep-2024 19:50:35.828 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Arquitectura:                      amd64
+16-Sep-2024 19:50:35.828 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:                         C:\Users\Chavez\.jdks\azul-21.0.3
+16-Sep-2024 19:50:35.828 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:                       21.0.3+9-LTS
+16-Sep-2024 19:50:35.828 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Vededor JVM:                       Azul Systems, Inc.
+16-Sep-2024 19:50:35.829 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:                     F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 19:50:35.829 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:                     F:\apache-tomcat-9.0.90
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.lang=ALL-UNNAMED
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.io=ALL-UNNAMED
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util=ALL-UNNAMED
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.home=F:\apache-tomcat-9.0.90
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.base=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.io.tmpdir=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\temp
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.config.file=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\logging.properties
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+16-Sep-2024 19:50:35.835 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\lib\idea_rt.jar=52948:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\bin
+16-Sep-2024 19:50:35.836 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dfile.encoding=UTF-8
+16-Sep-2024 19:50:35.836 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stdout.encoding=UTF-8
+16-Sep-2024 19:50:35.836 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stderr.encoding=UTF-8
+16-Sep-2024 19:50:35.885 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Cargada la biblioteca nativa APR de Apache Tomcat [1.3.0] con la versión APR [1.7.4].
+16-Sep-2024 19:50:35.885 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Capacidades APR: IPv6 [true], enviar fichero [true], aceptar filtros [false], aleatorio [true], UDS [true].
+16-Sep-2024 19:50:35.885 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+16-Sep-2024 19:50:35.954 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL inicializado correctamente [OpenSSL 3.0.13 30 Jan 2024]
+16-Sep-2024 19:50:36.328 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.init Inicializando el manejador de protocolo ["http-nio-8080"]
+
+16-Sep-2024 19:50:36.345 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.load Server initialization in [802] milliseconds
+16-Sep-2024 19:50:36.402 INFORMACIÓN [main] org.apache.catalina.core.StandardService.startInternal Arrancando servicio [Catalina]
+16-Sep-2024 19:50:36.402 INFORMACIÓN [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.90]
+16-Sep-2024 19:50:36.415 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml]
+16-Sep-2024 19:50:36.430 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 19:50:36.432 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has been ignored
+16-Sep-2024 19:50:36.448 ADVERTENCIA [main] org.apache.tomcat.util.digester.SetPropertiesRule.begin Match [Context/JarScanner/JarScanFilter] failed to set property [defaultPluggabilitySkip] to [true]
+16-Sep-2024 19:50:37.272 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 19:50:37.325 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has finished in [908] ms
+16-Sep-2024 19:50:37.325 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml]
+16-Sep-2024 19:50:37.325 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 19:50:37.326 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has been ignored
+16-Sep-2024 19:50:38.647 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 19:50:38.652 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has finished in [1.327] ms
+16-Sep-2024 19:50:38.656 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 19:50:38.683 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.start Server startup in [2337] milliseconds
+16-Sep-2024 19:56:13.357 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 19:56:13.360 INFORMACIÓN [Thread-1] org.apache.catalina.core.StandardService.stopInternal Parando servicio [Catalina]
+16-Sep-2024 19:56:13.387 ADVERTENCIA [Thread-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc La aplicación web [ROOT] registró el conductor JDBC [com.mysql.cj.jdbc.Driver] pero falló al anular el registro mientras la aplicación web estaba parada. Para prevenir un fallo de memoria, se ha anulado el registro del conductor JDBC por la fuerza.
+16-Sep-2024 19:56:13.387 ADVERTENCIA [Thread-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ROOT] appears to have started a thread named [mysql-cj-abandoned-connection-cleanup] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1847)
+ java.base/java.lang.ref.ReferenceQueue.await(ReferenceQueue.java:71)
+ java.base/java.lang.ref.ReferenceQueue.remove0(ReferenceQueue.java:143)
+ java.base/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:218)
+ com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:91)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+16-Sep-2024 19:56:13.396 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 19:56:13.400 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 19:56:16.775 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Nombre de la versión del servidor: Apache Tomcat/9.0.90
+16-Sep-2024 19:56:16.778 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:                      Jun 14 2024 14:45:13 UTC
+16-Sep-2024 19:56:16.778 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Número de versión de servidor:     9.0.90.0
+16-Sep-2024 19:56:16.778 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:                           Windows 11
+16-Sep-2024 19:56:16.779 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Versión de Systema Operativo:      10.0
+16-Sep-2024 19:56:16.779 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Arquitectura:                      amd64
+16-Sep-2024 19:56:16.779 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:                         C:\Users\Chavez\.jdks\azul-21.0.3
+16-Sep-2024 19:56:16.779 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:                       21.0.3+9-LTS
+16-Sep-2024 19:56:16.779 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Vededor JVM:                       Azul Systems, Inc.
+16-Sep-2024 19:56:16.779 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:                     F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 19:56:16.779 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:                     F:\apache-tomcat-9.0.90
+16-Sep-2024 19:56:16.787 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.lang=ALL-UNNAMED
+16-Sep-2024 19:56:16.787 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.io=ALL-UNNAMED
+16-Sep-2024 19:56:16.788 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util=ALL-UNNAMED
+16-Sep-2024 19:56:16.788 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+16-Sep-2024 19:56:16.788 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+16-Sep-2024 19:56:16.788 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.home=F:\apache-tomcat-9.0.90
+16-Sep-2024 19:56:16.788 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.base=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 19:56:16.788 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.io.tmpdir=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\temp
+16-Sep-2024 19:56:16.788 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.config.file=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\logging.properties
+16-Sep-2024 19:56:16.788 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+16-Sep-2024 19:56:16.789 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\lib\idea_rt.jar=53136:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\bin
+16-Sep-2024 19:56:16.789 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dfile.encoding=UTF-8
+16-Sep-2024 19:56:16.789 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stdout.encoding=UTF-8
+16-Sep-2024 19:56:16.789 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stderr.encoding=UTF-8
+16-Sep-2024 19:56:16.791 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Cargada la biblioteca nativa APR de Apache Tomcat [1.3.0] con la versión APR [1.7.4].
+16-Sep-2024 19:56:16.791 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Capacidades APR: IPv6 [true], enviar fichero [true], aceptar filtros [false], aleatorio [true], UDS [true].
+16-Sep-2024 19:56:16.791 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+16-Sep-2024 19:56:16.796 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL inicializado correctamente [OpenSSL 3.0.13 30 Jan 2024]
+16-Sep-2024 19:56:17.123 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.init Inicializando el manejador de protocolo ["http-nio-8080"]
+
+16-Sep-2024 19:56:17.143 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.load Server initialization in [560] milliseconds
+16-Sep-2024 19:56:17.201 INFORMACIÓN [main] org.apache.catalina.core.StandardService.startInternal Arrancando servicio [Catalina]
+16-Sep-2024 19:56:17.202 INFORMACIÓN [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.90]
+16-Sep-2024 19:56:17.212 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml]
+16-Sep-2024 19:56:17.226 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 19:56:17.227 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has been ignored
+16-Sep-2024 19:56:17.242 ADVERTENCIA [main] org.apache.tomcat.util.digester.SetPropertiesRule.begin Match [Context/JarScanner/JarScanFilter] failed to set property [defaultPluggabilitySkip] to [true]
+16-Sep-2024 19:56:18.016 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 19:56:18.095 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has finished in [880] ms
+16-Sep-2024 19:56:18.095 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml]
+16-Sep-2024 19:56:18.096 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 19:56:18.096 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has been ignored
+16-Sep-2024 19:56:18.732 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 19:56:18.738 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has finished in [643] ms
+16-Sep-2024 19:56:18.741 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 19:56:18.761 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.start Server startup in [1617] milliseconds
+16-Sep-2024 20:04:01.531 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:04:01.532 INFORMACIÓN [Thread-1] org.apache.catalina.core.StandardService.stopInternal Parando servicio [Catalina]
+16-Sep-2024 20:04:01.551 ADVERTENCIA [Thread-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc La aplicación web [ROOT] registró el conductor JDBC [com.mysql.cj.jdbc.Driver] pero falló al anular el registro mientras la aplicación web estaba parada. Para prevenir un fallo de memoria, se ha anulado el registro del conductor JDBC por la fuerza.
+16-Sep-2024 20:04:01.552 ADVERTENCIA [Thread-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ROOT] appears to have started a thread named [mysql-cj-abandoned-connection-cleanup] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1847)
+ java.base/java.lang.ref.ReferenceQueue.await(ReferenceQueue.java:71)
+ java.base/java.lang.ref.ReferenceQueue.remove0(ReferenceQueue.java:143)
+ java.base/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:218)
+ com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:91)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+16-Sep-2024 20:04:01.559 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:04:01.564 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:05:36.627 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Nombre de la versión del servidor: Apache Tomcat/9.0.90
+16-Sep-2024 20:05:36.631 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:                      Jun 14 2024 14:45:13 UTC
+16-Sep-2024 20:05:36.631 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Número de versión de servidor:     9.0.90.0
+16-Sep-2024 20:05:36.631 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:                           Windows 11
+16-Sep-2024 20:05:36.631 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Versión de Systema Operativo:      10.0
+16-Sep-2024 20:05:36.632 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Arquitectura:                      amd64
+16-Sep-2024 20:05:36.632 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:                         C:\Users\Chavez\.jdks\azul-21.0.3
+16-Sep-2024 20:05:36.632 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:                       21.0.3+9-LTS
+16-Sep-2024 20:05:36.632 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Vededor JVM:                       Azul Systems, Inc.
+16-Sep-2024 20:05:36.632 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:                     F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 20:05:36.632 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:                     F:\apache-tomcat-9.0.90
+16-Sep-2024 20:05:36.638 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.lang=ALL-UNNAMED
+16-Sep-2024 20:05:36.640 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.io=ALL-UNNAMED
+16-Sep-2024 20:05:36.640 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util=ALL-UNNAMED
+16-Sep-2024 20:05:36.640 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+16-Sep-2024 20:05:36.640 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+16-Sep-2024 20:05:36.640 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.home=F:\apache-tomcat-9.0.90
+16-Sep-2024 20:05:36.640 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.base=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 20:05:36.640 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.io.tmpdir=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\temp
+16-Sep-2024 20:05:36.640 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.config.file=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\logging.properties
+16-Sep-2024 20:05:36.641 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+16-Sep-2024 20:05:36.641 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\lib\idea_rt.jar=53451:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\bin
+16-Sep-2024 20:05:36.641 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dfile.encoding=UTF-8
+16-Sep-2024 20:05:36.641 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stdout.encoding=UTF-8
+16-Sep-2024 20:05:36.641 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stderr.encoding=UTF-8
+16-Sep-2024 20:05:36.644 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Cargada la biblioteca nativa APR de Apache Tomcat [1.3.0] con la versión APR [1.7.4].
+16-Sep-2024 20:05:36.644 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Capacidades APR: IPv6 [true], enviar fichero [true], aceptar filtros [false], aleatorio [true], UDS [true].
+16-Sep-2024 20:05:36.644 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+16-Sep-2024 20:05:36.649 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL inicializado correctamente [OpenSSL 3.0.13 30 Jan 2024]
+16-Sep-2024 20:05:36.961 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.init Inicializando el manejador de protocolo ["http-nio-8080"]
+
+16-Sep-2024 20:05:36.981 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.load Server initialization in [541] milliseconds
+16-Sep-2024 20:05:37.058 INFORMACIÓN [main] org.apache.catalina.core.StandardService.startInternal Arrancando servicio [Catalina]
+16-Sep-2024 20:05:37.058 INFORMACIÓN [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.90]
+16-Sep-2024 20:05:37.067 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml]
+16-Sep-2024 20:05:37.082 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 20:05:37.084 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has been ignored
+16-Sep-2024 20:05:37.100 ADVERTENCIA [main] org.apache.tomcat.util.digester.SetPropertiesRule.begin Match [Context/JarScanner/JarScanFilter] failed to set property [defaultPluggabilitySkip] to [true]
+16-Sep-2024 20:05:37.811 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 20:05:37.881 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has finished in [811] ms
+16-Sep-2024 20:05:37.881 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml]
+16-Sep-2024 20:05:37.882 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 20:05:37.882 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has been ignored
+16-Sep-2024 20:05:38.518 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 20:05:38.523 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has finished in [641] ms
+16-Sep-2024 20:05:38.526 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:05:38.546 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.start Server startup in [1563] milliseconds
+16-Sep-2024 20:21:17.698 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:21:17.700 INFORMACIÓN [Thread-1] org.apache.catalina.core.StandardService.stopInternal Parando servicio [Catalina]
+16-Sep-2024 20:21:17.718 ADVERTENCIA [Thread-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesJdbc La aplicación web [ROOT] registró el conductor JDBC [com.mysql.cj.jdbc.Driver] pero falló al anular el registro mientras la aplicación web estaba parada. Para prevenir un fallo de memoria, se ha anulado el registro del conductor JDBC por la fuerza.
+16-Sep-2024 20:21:17.718 ADVERTENCIA [Thread-1] org.apache.catalina.loader.WebappClassLoaderBase.clearReferencesThreads The web application [ROOT] appears to have started a thread named [mysql-cj-abandoned-connection-cleanup] but has failed to stop it. This is very likely to create a memory leak. Stack trace of thread:
+ java.base/jdk.internal.misc.Unsafe.park(Native Method)
+ java.base/java.util.concurrent.locks.LockSupport.parkNanos(LockSupport.java:269)
+ java.base/java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:1847)
+ java.base/java.lang.ref.ReferenceQueue.await(ReferenceQueue.java:71)
+ java.base/java.lang.ref.ReferenceQueue.remove0(ReferenceQueue.java:143)
+ java.base/java.lang.ref.ReferenceQueue.remove(ReferenceQueue.java:218)
+ com.mysql.cj.jdbc.AbandonedConnectionCleanupThread.run(AbandonedConnectionCleanupThread.java:91)
+ java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+ java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+ java.base/java.lang.Thread.run(Thread.java:1583)
+16-Sep-2024 20:21:17.724 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:21:17.727 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:21:18.936 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Nombre de la versión del servidor: Apache Tomcat/9.0.90
+16-Sep-2024 20:21:18.941 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:                      Jun 14 2024 14:45:13 UTC
+16-Sep-2024 20:21:18.941 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Número de versión de servidor:     9.0.90.0
+16-Sep-2024 20:21:18.942 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:                           Windows 11
+16-Sep-2024 20:21:18.942 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Versión de Systema Operativo:      10.0
+16-Sep-2024 20:21:18.942 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Arquitectura:                      amd64
+16-Sep-2024 20:21:18.942 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:                         C:\Users\Chavez\.jdks\azul-21.0.3
+16-Sep-2024 20:21:18.942 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:                       21.0.3+9-LTS
+16-Sep-2024 20:21:18.942 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Vededor JVM:                       Azul Systems, Inc.
+16-Sep-2024 20:21:18.943 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:                     F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 20:21:18.943 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:                     F:\apache-tomcat-9.0.90
+16-Sep-2024 20:21:18.951 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.lang=ALL-UNNAMED
+16-Sep-2024 20:21:18.952 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.io=ALL-UNNAMED
+16-Sep-2024 20:21:18.952 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util=ALL-UNNAMED
+16-Sep-2024 20:21:18.952 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+16-Sep-2024 20:21:18.952 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.home=F:\apache-tomcat-9.0.90
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.base=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.io.tmpdir=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\temp
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.config.file=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\logging.properties
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\lib\idea_rt.jar=53887:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\bin
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dfile.encoding=UTF-8
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stdout.encoding=UTF-8
+16-Sep-2024 20:21:18.953 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stderr.encoding=UTF-8
+16-Sep-2024 20:21:18.957 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Cargada la biblioteca nativa APR de Apache Tomcat [1.3.0] con la versión APR [1.7.4].
+16-Sep-2024 20:21:18.957 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Capacidades APR: IPv6 [true], enviar fichero [true], aceptar filtros [false], aleatorio [true], UDS [true].
+16-Sep-2024 20:21:18.957 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+16-Sep-2024 20:21:18.963 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL inicializado correctamente [OpenSSL 3.0.13 30 Jan 2024]
+16-Sep-2024 20:21:19.295 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.init Inicializando el manejador de protocolo ["http-nio-8080"]
+
+16-Sep-2024 20:21:19.314 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.load Server initialization in [622] milliseconds
+16-Sep-2024 20:21:19.381 INFORMACIÓN [main] org.apache.catalina.core.StandardService.startInternal Arrancando servicio [Catalina]
+16-Sep-2024 20:21:19.381 INFORMACIÓN [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.90]
+16-Sep-2024 20:21:19.390 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml]
+16-Sep-2024 20:21:19.403 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 20:21:19.404 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has been ignored
+16-Sep-2024 20:21:19.419 ADVERTENCIA [main] org.apache.tomcat.util.digester.SetPropertiesRule.begin Match [Context/JarScanner/JarScanFilter] failed to set property [defaultPluggabilitySkip] to [true]
+16-Sep-2024 20:21:20.122 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 20:21:20.189 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has finished in [797] ms
+16-Sep-2024 20:21:20.189 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml]
+16-Sep-2024 20:21:20.190 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 20:21:20.190 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has been ignored
+16-Sep-2024 20:21:20.789 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 20:21:20.794 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has finished in [604] ms
+16-Sep-2024 20:21:20.797 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:21:20.818 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.start Server startup in [1502] milliseconds
+16-Sep-2024 20:50:08.707 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:50:08.711 INFORMACIÓN [Thread-1] org.apache.catalina.core.StandardService.stopInternal Parando servicio [Catalina]
+16-Sep-2024 20:50:08.731 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 20:50:08.739 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 21:09:37.984 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Nombre de la versión del servidor: Apache Tomcat/9.0.90
+16-Sep-2024 21:09:37.988 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Server built:                      Jun 14 2024 14:45:13 UTC
+16-Sep-2024 21:09:37.989 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Número de versión de servidor:     9.0.90.0
+16-Sep-2024 21:09:37.989 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log OS Name:                           Windows 11
+16-Sep-2024 21:09:37.989 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Versión de Systema Operativo:      10.0
+16-Sep-2024 21:09:37.989 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Arquitectura:                      amd64
+16-Sep-2024 21:09:37.989 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Java Home:                         C:\Users\Chavez\.jdks\azul-21.0.3
+16-Sep-2024 21:09:37.989 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log JVM Version:                       21.0.3+9-LTS
+16-Sep-2024 21:09:37.990 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Vededor JVM:                       Azul Systems, Inc.
+16-Sep-2024 21:09:37.990 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_BASE:                     F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 21:09:37.990 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log CATALINA_HOME:                     F:\apache-tomcat-9.0.90
+16-Sep-2024 21:09:37.997 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.lang=ALL-UNNAMED
+16-Sep-2024 21:09:37.997 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.io=ALL-UNNAMED
+16-Sep-2024 21:09:37.997 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util=ALL-UNNAMED
+16-Sep-2024 21:09:37.997 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.base/java.util.concurrent=ALL-UNNAMED
+16-Sep-2024 21:09:37.997 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             --add-opens=java.rmi/sun.rmi.transport=ALL-UNNAMED
+16-Sep-2024 21:09:37.997 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.home=F:\apache-tomcat-9.0.90
+16-Sep-2024 21:09:37.998 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dcatalina.base=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina
+16-Sep-2024 21:09:37.998 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.io.tmpdir=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\temp
+16-Sep-2024 21:09:37.998 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.config.file=F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\logging.properties
+16-Sep-2024 21:09:37.998 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Djava.util.logging.manager=org.apache.juli.ClassLoaderLogManager
+16-Sep-2024 21:09:37.998 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -javaagent:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\lib\idea_rt.jar=55090:C:\Program Files\JetBrains\IntelliJ IDEA 2023.2.4\bin
+16-Sep-2024 21:09:37.998 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dfile.encoding=UTF-8
+16-Sep-2024 21:09:37.998 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stdout.encoding=UTF-8
+16-Sep-2024 21:09:37.999 INFORMACIÓN [main] org.apache.catalina.startup.VersionLoggerListener.log Command line argument:             -Dsun.stderr.encoding=UTF-8
+16-Sep-2024 21:09:38.029 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Cargada la biblioteca nativa APR de Apache Tomcat [1.3.0] con la versión APR [1.7.4].
+16-Sep-2024 21:09:38.029 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent Capacidades APR: IPv6 [true], enviar fichero [true], aceptar filtros [false], aleatorio [true], UDS [true].
+16-Sep-2024 21:09:38.029 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.lifecycleEvent APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+16-Sep-2024 21:09:38.035 INFORMACIÓN [main] org.apache.catalina.core.AprLifecycleListener.initializeSSL OpenSSL inicializado correctamente [OpenSSL 3.0.13 30 Jan 2024]
+16-Sep-2024 21:09:38.346 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.init Inicializando el manejador de protocolo ["http-nio-8080"]
+
+16-Sep-2024 21:09:38.368 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.load Server initialization in [576] milliseconds
+16-Sep-2024 21:09:38.428 INFORMACIÓN [main] org.apache.catalina.core.StandardService.startInternal Arrancando servicio [Catalina]
+16-Sep-2024 21:09:38.429 INFORMACIÓN [main] org.apache.catalina.core.StandardEngine.startInternal Starting Servlet engine: [Apache Tomcat/9.0.90]
+16-Sep-2024 21:09:38.440 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml]
+16-Sep-2024 21:09:38.455 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 21:09:38.456 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has been ignored
+16-Sep-2024 21:09:38.468 ADVERTENCIA [main] org.apache.tomcat.util.digester.SetPropertiesRule.begin Match [Context/JarScanner/JarScanFilter] failed to set property [defaultPluggabilitySkip] to [true]
+16-Sep-2024 21:09:39.388 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 21:09:39.440 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\ROOT.xml] has finished in [996] ms
+16-Sep-2024 21:09:39.440 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Desplieque del descriptor de configuración [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml]
+16-Sep-2024 21:09:39.441 ADVERTENCIA [main] org.apache.catalina.core.StandardContext.setPath Una ruta de contexto debe de ser o una cadena vacía o comenzar con "/". La ruta [/] no cumple con estos criterios y ha sido cambiada por []
+16-Sep-2024 21:09:39.441 ADVERTENCIA [main] org.apache.catalina.startup.HostConfig.deployDescriptor The path attribute with value [] in deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has been ignored
+16-Sep-2024 21:09:40.566 INFORMACIÓN [main] org.apache.jasper.servlet.TldScanner.scanJars Al menos un JAR, que se ha explorado buscando TLDs, aún no contenía TLDs. Activar historial de depuración para este historiador para una completa lista de los JARs que fueron explorados y de los que nos se halló TLDs. Saltarse JARs no necesarios durante la exploración puede dar lugar a una mejora de tiempo significativa en el arranque y compilación de JSP .
+16-Sep-2024 21:09:40.570 INFORMACIÓN [main] org.apache.catalina.startup.HostConfig.deployDescriptor Deployment of deployment descriptor [F:\apache-tomcat-9.0.90\SWAD_Proyecto\conf\Catalina\conf\Catalina\localhost\SWAD_Proyecto.xml] has finished in [1.129] ms
+16-Sep-2024 21:09:40.573 INFORMACIÓN [main] org.apache.coyote.AbstractProtocol.start Starting ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 21:09:40.591 INFORMACIÓN [main] org.apache.catalina.startup.Catalina.start Server startup in [2222] milliseconds
+16-Sep-2024 21:09:48.834 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.pause Pausing ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 21:09:48.837 INFORMACIÓN [Thread-1] org.apache.catalina.core.StandardService.stopInternal Parando servicio [Catalina]
+16-Sep-2024 21:09:48.859 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.stop Stopping ProtocolHandler ["http-nio-8080"]
+16-Sep-2024 21:09:48.866 INFORMACIÓN [Thread-1] org.apache.coyote.AbstractProtocol.destroy Destroying ProtocolHandler ["http-nio-8080"]
